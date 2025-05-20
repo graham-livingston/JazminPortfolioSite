@@ -1,2 +1,2 @@
 # Jazmine-PortfolioSite
-Portfolio website for the film director Jasmine Zhao
+Portfolio website for the film director Jazmin Zhao
