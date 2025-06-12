@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Test</title>
+    <style>
+        .video-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+        video {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <div class="video-container">
+        <video id="test-video" autoplay muted loop playsinline>
+            <source src="./static/life-is-elsewhere-clip.mp4" type="video/mp4">
+        </video>
+    </div>
+    <script>
+        const video = document.getElementById('test-video');
+        video.addEventListener('error', (e) => {
+            console.error('Video error:', e);
+        });
+        video.addEventListener('loadeddata', () => {
+            console.log('Video loaded successfully');
+        });
+        video.addEventListener('canplay', () => {
+            console.log('Video can play');
+        });
+    </script>
+</body>
+</html>

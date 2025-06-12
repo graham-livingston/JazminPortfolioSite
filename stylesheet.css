@@ -1,0 +1,298 @@
+/* Root variables for theme */
+:root {
+  --font-primary: 'Helvetica Neue', Arial, sans-serif;
+  --color-bg: #ffffff;
+  --color-text: #333333;
+  --color-muted: #777777;
+  --color-accent: #000000;
+  --color-card-bg: #f9f9f9;
+  --color-card-bg-hover: #f6faba;
+  --shadow-light: rgba(0, 0, 0, 0.05);
+  --shadow-medium: rgba(0, 0, 0, 0.1);
+  --transition-speed: 0.3s;
+}
+
+
+/* Global resets and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+
+
+html,
+body {
+  font-family: cofo-sans-variable, sans-serif;
+  font-style: normal;
+  font-variation-settings: "slnt" 0, "wght" 400;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-primary);
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Hero container - full width */
+#hero-container {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background: var(--color-bg);
+  overflow: hidden;
+}
+
+/* Video container for hybrid video system */
+.hero .video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Vimeo iframe styling for fullscreen cover */
+.hero iframe {
+  position: absolute;
+  border: none;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* Local video styling for fullscreen cover */
+.hero video {
+  position: absolute;
+  border: none;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  object-fit: cover;
+}
+
+/* Responsive video sizing */
+@media (max-aspect-ratio: 16/9) {
+  .hero iframe,
+  .hero video {
+    width: 177.78vh; /* 16:9 aspect ratio */
+    height: 100vh;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+  }
+}
+
+@media (min-aspect-ratio: 16/9) {
+  .hero iframe,
+  .hero video {
+    width: 100vw;
+    height: 56.25vw; /* 16:9 aspect ratio */
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: opacity 0.8s ease-in-out;
+  }
+}
+
+.hero .film-titles {
+  position: absolute;
+  bottom: 2rem;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  padding: 0 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  z-index: 2;
+  border-top: 1px solid var(--color-muted);
+  }
+
+.hero .film-titles h2 {
+  font-size: 2rem;
+  color: var(--color-card-bg);
+  opacity: 0.9;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  position: relative;
+}
+
+.hero .film-titles h2:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+.hero .film-titles h2.video-loading::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--color-card-bg);
+  animation: loading 1s infinite;
+}
+
+@keyframes loading {
+  0% { transform: scaleX(0); opacity: 0; }
+  50% { transform: scaleX(1); opacity: 1; }
+  100% { transform: scaleX(0); opacity: 0; }
+}
+
+/* --- Film titles slide-down + fade-out --- */
+@keyframes slideDownFadeOut {
+  from { opacity: 1; transform: translateY(0); }
+  to   { opacity: 0; transform: translateY(50px); }
+}
+
+  .hero .film-titles.animating {
+    animation: slideDownFadeOut 0.8s ease-in-out forwards;
+  }
+
+  /* --- Hero navigation (hidden by default) --- */
+  .hero-nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    opacity: 0;
+    transform: translateY(-100%);
+    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+    z-index: 3;
+  }
+
+  .hero-nav.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* --- Hide main nav on reel state --- */
+  .navigation.hidden {
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    pointer-events: none;
+  }
+
+  /* Add smooth transition for video changes */
+  .hero iframe {
+    transition: opacity 0.02s ease;
+  }
+
+  /* Navigation */
+  .navigation {
+    position: absolute;
+    width: 100vw;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* gap: 1rem; */
+    border-bottom: 1px solid var(--color-muted);
+    z-index: 1000;
+  }
+
+.navigation a {
+  font-size: 1rem;
+  color: var(--color-card-bg);
+  padding: 0.5rem 1rem;
+  /* background-color: var(--color-card-bg); */
+  border-radius: 4px;
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+.navigation a:hover {
+  background-color: var(--color-card-bg-hover);
+  color: var(--color-accent);
+}
+
+.navigation a.active {
+  background-color: var(--color-accent);
+  color: var(--color-card-bg);
+}
+
+.dropdown-menu {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  align-items: flex-end;
+  list-style-type: none;
+  background: none;
+  z-index: 100;
+}
+
+.dropdown-menu li a {
+  padding: 0.5rem 1rem;
+  color: white;
+  /* background-color: var(--color-card-bg); */
+  border-radius: 4px;
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+  white-space: nowrap;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: flex;
+}
+
+/* Container wrapper for individual pages */
+#content-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Allow scrolling on individual pages (not index) */
+body:not(.index-page) {
+  overflow: auto;
+}
+
+/* Trailer viewer for individual film pages */
+.trailer-viewer {
+  width: 66.666vw; /* One third of viewport width */
+  margin: 3rem auto; /* Center horizontally with margin at top */
+  position: relative;
+  padding-bottom: 18.75vw; /* 16:9 aspect ratio for 1/3 width */
+  height: 0;
+  overflow: hidden;
+}
+
+.trailer-viewer iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  border: none;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .hero .film-titles h2 {
+    font-size: 1.5rem;
+  }
+  
+  .trailer-viewer {
+    width: 80vw; /* Wider on mobile */
+    padding-bottom: 45vw; /* Maintain aspect ratio */
+  }
+}

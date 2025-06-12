@@ -1,15 +1,453 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jazmin Zhao</title>
-    <src rel="stylesheet" href="stylesheet.css">
-</head>
-<body>
-    <h1>Jazmin Zhao</h1>
-    
+    <link rel="stylesheet" href="https://use.typekit.net/gve3tpm.css">
+    <link rel="stylesheet" href="stylesheet.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="script.js"></script>
+
+
+</head>
+<body class="index-page">
+    <div id="nav-container"></div>
+    <div id="hero-container"></div>
+
+    <script>
+        $(document).ready(function() {
+            const data = {
+                "hero": {
+                    "director_reel": "1092319647"
+                },
+                "films": {
+                    "conversation-among-the-ruins": {
+                        "title": "Conversation Among the Ruins",
+                        "year": 2025,
+                        "location": "China/United States",
+                        "shortDescription": "In Lianzhou, a rainy southern region of China, nestled around a small-town art museum, two women cross paths at a photography exhibition, forming a fleeting connection that shapes and reproduces their desires in ways beyond their perception.",
+                        "duration": "00:25:59",
+                        "poster": "./static/conversation-among-the-ruins/poster.jpg",
+                        "trailer": "1092285786",
+                        "awards": [
+                                {   
+                                    "name": "Albert P. Weisman Award", 
+                                    "year": "2025",
+                                    "organization": ""
+                                }
+                        ],
+                        "cast": [
+                            {
+                                "name": "Yenan Dong",
+                            },
+                            {
+                                "name": "Hui Yi",
+                            },
+                            {
+                                "name": "Yulu Gan",
+                            }
+                        ],
+                        "crew": [
+                            {
+                                "role": "Writer, Director and Editor",
+                                "name": "Jiamin Zhao"
+                            },
+                            {
+                                "role": "Producer",
+                                "name": "Roku Long"
+                            },
+                            {
+                                "role": "Line Producer",
+                                "name": "Yueqing Xu"
+                            },
+                            {
+                                "role": "Director of Photography",
+                                "name": "Songming Cai"
+                            },
+                            {
+                                "role": "Production Designer",
+                                "name": "Yan Liang"
+                            },
+                            {
+                                "role": "Sound",
+                                "name": "Hao Chen"
+                            },
+                            {
+                                "role": "Music",
+                                "name": "Winnie Liu"
+                            }
+                        ]
+                    },
+                    "life-is-elsewhere": {
+                        "title": "Life is Elsewhere",
+                        "year": 2024,
+                        "location": "United States",
+                        "shortDescription": "A Chinese graduate student burdened by disillusionment with her homeland, and her Chinese-American student passionately drawn to a culture she only knows from afar, form an unexpected bond through weekly language lessons. As their personal projections of “home” begin to clash, the fragile connection between them unravels, revealing the quiet tensions between identity, longing, and the untranslatable distances between individuals.",
+                        "duration": "00:11:10",
+                        "trailer": "871993431",
+                        "cast": [
+                            {
+                                "name": "Jiseung Cho",
+                            },
+                            {
+                                "name": "Erin Luo",
+                            },
+                            {
+                                "name": "Anita Ho",
+                            }
+                        ],
+                        "crew": [
+                            {
+                                "role": "Writer, Director and Editor",
+                                "name": "Jiamin Zhao"
+                            },
+                            {
+                                "role": "Producer",
+                                "name": "Roku Long"
+                            },
+                            {
+                                "role": "Line Producer",
+                                "name": "Lorena De Leon"
+                            },
+                            {
+                                "role": "Director of Photography",
+                                "name": "Lorena De Leon"
+                            },
+                            {
+                                "role": "Gaffer",
+                                "name": "Jenny Popovich"
+                            },
+                            {
+                                "role": "Production Design",
+                                "name": "Lijing Wang"
+                            },
+                            {
+                                "role": "Music",
+                                "name": "Winnie Liu"
+                            }
+                        ],
+                        "awards": [
+                            {
+                                "name": "Blue Glass Award - official selection",
+                                "year": "2024",
+                                "organization": "Blue Whisky International Film Festival"
+                            },
+                            {
+                                "name": "Best Narrative Short",
+                                "year": "2024",
+                                "organization": "Chicago Women Film Fest"
+                            }
+                        ]
+                    },
+                    "under-the-skin": {
+                        "title": "Under the Skin",
+                        "year": 2023,
+                        "location": "United States",
+                        "shortDescription": "As a director attempts to document an actor preparing for a stage role, the lines between observation and manipulation blur. What begins as a study of performance gradually transforms into a surreal reflection on authorship, identity, and the power of the gaze, where the subject and filmmaker mirror each other in an ever-shifting dance of control and vulnerability.",
+                        "duration": "00:05:00",
+                        "trailer": "871992625",
+                        "cast": [
+                            {
+                                "name": "Brandy Cheyenne Miller",
+                            },
+                            {
+                                "name": "Genevieve Corkey",
+                            }
+                        ],
+                        "crew": [
+                            {
+                                "role": "Writer, Director and Editor",
+                                "name": "Jiamin Zhao"
+                            },
+                            {
+                                "role": "Producer",
+                                "name": "Roku Long"
+                            },
+                            {
+                                "role": "Director of Photography",
+                                "name": "Lorena De Leon"
+                            },
+                            {
+                                "role": "Sound",
+                                "name": "Alessandra Forno"
+                            },
+                            {
+                                "role": "Gaffer",
+                                "name": "Andrew Nelson Jex"
+                            }
+                        ],
+                        "awards": [
+                        ]
+                    },
+                    "flow-like-wine": {
+                        "title": "Flow Like Wine",
+                        "year": 2022,
+                        "location": "United States",
+                        "shortDescription": "In the quiet after a wedding, a bride and groom return to the place where it all began. As memories and reality begin to blur, the bride finds herself drifting between presence and absence, love and solitude. A meditation on intimacy, dissonance, and the spaces we can never truly share.",
+                        "duration": "00:04:28",
+                        "trailer": "",
+                        "cast": [
+                            {
+                                "name": "Ariana Kanaya",
+                            },
+                            {
+                                "name": "Brandon Wiman",
+                            }
+                        ],
+                        "crew": [
+                            {
+                                "role": "Writer, Director, Producer and Editor",
+                                "name": "Jiamin Zhao"
+                            },
+                            {
+                                "role": "Director of Photography",
+                                "name": "Noah Chlebeck"
+                            },
+                            {
+                                "role": "Sound",
+                                "name": "Fara Rezaeipour"
+                            },
+                            {
+                                "role": "Music",
+                                "name": "Dehan Liang"
+                            }
+                        ],
+                        "awards": [
+                            {
+                                "name": "Short Film Nominee",
+                                "year": 2023,
+                                "organization": "Shorted"
+                            }
+                        ]
+                    },
+                    "scenes-from-life": {
+                        "title": "Scenes From Life",
+                        "year": 2021,
+                        "location": "China",
+                        "shortDescription": "During the pandemic, three strangers move through quiet acts of longing and resistance: a deliveryman shadowed by suspicion, a disabled man seeking motion from stillness, and a security guard learning a new language in silence.",
+                        "duration": "00:13:31",
+                        "trailer": "1092367508",
+                        "cast": [
+                            {
+                                "name": "Ziquan Wang",
+                            },
+                            {
+                                "name": "Xiansong Zhu",
+                            },
+                            {
+                                "name": "Jiehui Deng",
+                            },
+                            {
+                                "name": "Shihua Zhao",
+                            },
+                            {
+                                "name": "Qiaoyi Zhu",
+                            },
+                            {
+                                "name": "Xuming Xiang",
+                            },
+                            {
+                                "name": "Quanshi Huang",
+                            },
+                            {
+                                "name": "Daju Li",
+                            },
+                            {
+                                "name": "Yuwei Liu",
+                            },
+                            {
+                                "name": "Yangyu Zhong",
+                            },
+                            {
+                                "name": "Yuping Deng"
+                            }
+                        ],
+                        "crew": [
+                            {
+                                "role": "Writer, Director, Producer and Editor",
+                                "name": "Jiamin Zhao"
+                            },
+                            {
+                                "role": "Producer",
+                                "name": "Roku Long"
+                            },
+                            {
+                                "role": "Camera and Sound",
+                                "name": "Jiamin Zhao"
+                            }
+                        ],
+                        "awards": []
+                    },
+                    "bluest-nude": {
+                        "title": "Bluest Nude",
+                        "year": 2024,
+                        "location": "United States",
+                        "shortDescription": "A woman trying to escape from different scenarios tells her story while reconstructing the narrative every time, which eventually turns out to be all AI-generated by the power behind it.",
+                        "duration": "00:05:50",
+                        "trailer": "",
+                        "cast": [
+                            {
+                                "name": "Carol Rhyu",
+                            }
+                        ],
+                        "crew": [
+                            {
+                                "role": "Writer, Director, Producer and Editor",
+                                "name": "Jiamin Zhao"
+                            },
+                            {
+                                "role": "Director of Photography",
+                                "name": "Stephane Joseph"
+                            },
+                            {
+                                "role": "Assistant Director",
+                                "name": "Linhan Zhang"
+                            }
+                        ],
+                        "awards": []
+                    },
+                    "linger": {
+                        "title": "Linger",
+                        "year": 2021,
+                        "location": "China",
+                        "shortDescription": "Visual Exercise | Silent Scene: Coming Together",
+                        "duration": "00:01:50",
+                        "trailer": "",
+                        "cast": [
+                            {
+                                "name": "Angeli sofia Morillo Villasmil",
+                            },
+                            {
+                                "name": "Yangyu Zhong",
+                            }
+                        ],
+                        "crew": [
+                            {
+                                "role": "Writer, Director",
+                                "name": "Jiamin Zhao"
+                            }
+                        ],
+                        "awards": []
+                    },
+                },
+
+                "profile": {
+                    "name": "Jazmin Zhao",
+                    "bio": 'Jiamin Zhao is a Chinese filmmaker based in Chicago. Her work, across fiction and documentary, explores themes of social alienation, cultural memory, and the reproduction of desires in the complex relationships between interior experiences and the external world. She graduated from Columbia College Chicago with an MFA degree in Cinema Directing and is a recipient of the Albert P. Weisman Award for her thesis, "Conversation Among the Ruins."',
+                    "image": "./static/jazmin-profile-pic.JPG",
+                    "socials": {
+                        "email": "jazminzhaojm@gmail.com",
+                        "linkedin": "www.linkedin.com/in/jazmin-zhao-50a62b24b",
+                        "vimeo": "https://vimeo.com/user116514822",
+                        "imdb": "https://www.imdb.com/name/nm15448230/?ref_=tt_ov_1_1"
+                    }
+                },
+
+                "filmography":{
+                    "shorts": [
+                        {"title": "An Acting Student", "year": 2025, "location": "Chicago", "role": "Directing of Photography"},
+                        {"title": "The One Left Behind", "year": 2025, "location": "Chicago", "role": "Production Assistant"},
+                        {"title": "Conversation Among the Ruins", "year": 2025, "location": "Lianzhou, China", "role": "Writer, Director, & Editor"},
+                        {"title": "Bluest Nude", "year": 2024, "location": "Chicago", "role": "Writer, Director, Producer & Editor"},
+                        {"title": "Masacote", "year": 2023, "location": "Chicago", "role": "Assistant Producer & Editor"},
+                        {"title": "The Last Chance", "year": 2023, "location": "Chicago", "role": "Art Assistant"},
+                        {"title": "Bush", "year": 2023, "location": "Chicago", "role": "Second Assistant Camera"},
+                        {"title": "The Supporting Actor", "year": 2023, "location": "NYC", "role": "Second Assistant Director"},
+                        {"title": "Hair Wraith", "year": 2023, "location": "Chicago", "role": "First Assistant Camera"},
+                        {"title": 'Life is Elsewhere', 'year': 2023, 'location': 'Chicago', 'role': 'Writer, Director, Producer & Editor'},
+                        {"title":"Tale of a Dear","year":"2023","location":"Chicago","role":"First Assistant Director"},
+                        {"title":"Work Toward Your Dream","year":"2023","location":"Chicago","role":"Director of Photography"},
+                        {"title":"Toronto","year":"2023","location":"Chicago","role":"Line Producer & Assistant Director"},
+                        {"title":"Shameless Geese","year":"2023","location":"Chicago","role":"Location Audio"},
+                        {"title":"Split","year":"2023","location":"Chicago","role":"Director of Photography"},
+                        {"title":"Under the Skin","year":"2022","location":"Chicago","role":"Writer, Director, Producer & Editor"},
+                        {"title":"Madre Hermosa","year":"2022","location":"Chicago","role":"Director of Photography"},
+                        {"title":"Love Bites","year":"2022","location":"Chicago","role":"Assistant Director"},
+                        {"title":"Cherry on Top","year":"2022","location":"Chicago","role":"Assistant Camera"},
+                        {"title":"Flow Like Wine","year":"2022","location":"Chicago","role":"Writer, Director, Producer & Editor"},
+                        {"title":"Yesterday, Today & Tomorrow", "year": 2022, "location": "Chicago", "role": "Assistant Director"},
+                        {"title": "Linger", "year": 2021, "location": "Guangzhou", "role": "Writer, Director, Director of Photography & Editor"},
+                        {"title": "Scenes From Life", "year": 2021, "location": "Dongguan", "role": "Writer, Director, DP & Editor"},
+                        {"title": "Typhoon", "year": 2020, "location": "Guangdong", "role": "Assistant Director & Assistant Producer"},
+                        {"title": "Insomnia Hotel", "year": 2020, "location": "Shenzhen", "role": "Assistant Director & Assistant Camera"},
+                        {"title": "Blocked", "year": 2019, "location": "Guangzhou", "role": "Director"},
+                        {"title": "Soft and Rigid", "year": 2019, "location": "Guangzhou", "role": "Director, Co-DP & Editor"},
+                        {"title": 'Hui Mou', 'year': 2018, 'location': 'Dongguan', 'role': 'Script Supervisor'}
+                    ],
+                    "FEATURE DOCUMENTARIES": [
+                        {"title": "A Photographic Memory", "year": 2024, "location": "Los Angeles", "role": "Assistant Producer"},
+                        {"title": "Together", "year": 2023, "location": "New York City", "role": "Assistant Producer & Editor"}
+                    ],
+                    "WEB SERIES": [
+                        {"title": "Apartment 51", "year": 2023, "location": "Chicago", "role": "Ep 1 Camera Operator"},
+                        {"title": "Apartment 51", "year": 2023, "location": "Chicago", "role": "Ep 2 Assistant Director"},
+                        {"title": "Apartment 51", "year": 2023, "location": "Chicago", "role": "Ep 3 Episode Producer & Sound"},
+                        {"title": "Apartment 51", "year": 2023, "location": "Chicago", "role": "Ep 5 Co-Director"}
+                    
+                    ]
+                }
+
+            };
+
+            // Add nav bar
+            // removed for initial test upload
+            // const navContainer = $('#nav-container');
+            // const selectFilms = [data.films['conversation-among-the-ruins'], data.films['life-is-elsewhere'], data.films['under-the-skin'], data.films['scenes-from-life']];
+            // const navBar = buildNavigation(data.films);
+            // navContainer.append(navBar);
+
+            // Add hero section to hero container
+            const heroContainer = $('#hero-container');
+            
+            // Create films object with proper structure for buildHeroSection
+            const filmsForHero = {
+                'conversation-among-the-ruins': data.films['conversation-among-the-ruins'],
+                'life-is-elsewhere': data.films['life-is-elsewhere'],
+                'under-the-skin': data.films['under-the-skin'],
+                'scenes-from-life': data.films['scenes-from-life']
+            };
+            
+            const heroSection = buildHeroSection(data.hero.director_reel, filmsForHero);
+            heroContainer.append(heroSection);
+            
+            // Initialize hover functionality after hero section is added to DOM
+            initializeHeroHovers(data.hero.director_reel);
+
+
+            // // 1) Intercept Reel link on index page
+            // $('#reel-button').on('click', function(e) {
+            //     // Only on the index ("/" or "index.html")
+            //     const path = window.location.pathname;
+            //     if (path === '/' || path.endsWith('/index.html')) {
+            //     e.preventDefault();
+            //     // Push new URL (no page reload)
+            //     history.pushState({ view: 'reel' }, '', '/reel');
+
+            //     // 2) Animate film titles down + fade
+            //     $('.film-titles').addClass('animating');
+
+            //     // 3) Hide main nav, show hero-nav
+            //     $('.navigation').addClass('hidden');
+            //     $('#hero-nav').addClass('active');
+            //     }
+            // });
+
+            // // 4) Handle back/forward browser buttons
+            // window.addEventListener('popstate', function(event) {
+            //     if (event.state && event.state.view === 'reel') {
+            //     // If we're in reel state, ensure animations/nav reflect it
+            //     $('.film-titles').addClass('animating');
+            //     $('.navigation').addClass('hidden');
+            //     $('#hero-nav').addClass('active');
+            //     } else {
+            //     // Otherwise revert to default hero
+            //     $('.film-titles').removeClass('animating');
+            //     $('.navigation').removeClass('hidden');
+            //     $('#hero-nav').removeClass('active');
+            //     }
+            // });
+        });
+    </script>
 </body>
 </html>
