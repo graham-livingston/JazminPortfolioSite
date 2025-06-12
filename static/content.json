@@ -1,0 +1,80 @@
+{
+    "hero":{
+        "director_reel": "./static/Jiaming_Zhao_Director_Reel.mp4"
+    },
+    "films": {
+        "Conversations among the ruins": {
+            "year": 2025,
+            "shortDescription": "lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "duration": "2h 15m",
+            "awards": [
+                "Best Director",
+                "Best Cinematography"
+            ],
+            "links": {
+                "page": "https://example.com/conversations-among-the-ruins",
+                "trailer": "https://example.com/trailer-conversations-among-the-ruins",
+                "poster": "https://example.com/poster-conversations-among-the-ruins",
+                "stills": "./static/stills/conversations-among-the-ruins"
+            }
+        },
+
+        "Life is Elsewhere": {
+            "year": 2023,
+            "shortDescription": "lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "duration": "2h 15m",
+            "awards": [
+                "Best Director",
+                "Best Cinematography"
+            ],
+            "links": {
+                "page": "https://example.com/conversations-among-the-ruins",
+                "trailer": "https://example.com/trailer-conversations-among-the-ruins",
+                "poster": "https://example.com/poster-conversations-among-the-ruins",
+                "stills": "./static/stills/conversations-among-the-ruins"
+            }
+        },
+
+        "Under the Skin": {
+            "year": 2024,
+            "shortDescription": "lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+            "longDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+            "duration": "1h 15m",
+            "awards": [
+                "Best Director",
+                "Best Cinematography"
+            ],
+            "links": {
+                "page": "https://example.com/conversations-among-the-ruins",
+                "trailer": "https://example.com/trailer-conversations-among-the-ruins",
+                "poster": "https://example.com/poster-conversations-among-the-ruins",
+                "stills": "./static/stills/conversations-among-the-ruins"
+            }
+        }
+
+        },
+    "about": {
+        "socials": {
+            "vimeo": "https://facebook.com/example",
+            "IMDB": "https://twitter.com/example",
+            "instagram": "https://instagram.com/example",
+            "youtube": "https://youtube.com/example"
+        },
+        "email": "jmzhao@colum.edu",
+        "bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "photo": "./../static/images/about.jpg"
+
+    },
+    "awards": {
+        "Best Director": {
+            "year": 2023,
+            "film": "Conversations among the ruins"
+        },
+        "Best Cinematography": {
+            "year": 2023,
+            "film": "Conversations among the ruins"
+        }
+    }
+}
