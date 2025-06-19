@@ -10,6 +10,19 @@
   --shadow-light: rgba(0, 0, 0, 0.05);
   --shadow-medium: rgba(0, 0, 0, 0.1);
   --transition-speed: 0.3s;
+
+  /* Navigation Theme Variables */
+  --nav-light-text: #f9f9f9;
+  --nav-light-bg: transparent;
+  --nav-light-hover-bg: rgba(255, 255, 255, 0.2);
+  --nav-light-hover-text: #ffffff;
+  --nav-light-border: rgba(255, 255, 255, 0.3);
+
+  --nav-dark-text: #333333;
+  --nav-dark-bg: transparent;
+  --nav-dark-hover-bg: rgba(0, 0, 0, 0.1);
+  --nav-dark-hover-text: #000000;
+  --nav-dark-border: rgba(0, 0, 0, 0.2);
 }
 
 
@@ -165,25 +178,38 @@ a {
 }
 
   .hero .film-titles.animating {
-    animation: slideDownFadeOut 0.8s ease-in-out forwards;
+      animation: slideDownFadeOut 0.8s ease-in-out forwards;
+      transform: translateY(50px);
+      opacity: 0;
   }
 
   /* --- Hero navigation (hidden by default) --- */
-  .hero-nav {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    opacity: 0;
-    transform: translateY(-100%);
-    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
-    z-index: 3;
-  }
-
-  .hero-nav.active {
-    opacity: 1;
-    transform: translateY(0);
-  }
+ .hero-nav {
+  position: absolute;
+  /* top: 0; left: 0; */
+  bottom: 0;
+  width: 100%; padding: 1rem;
+  display: flex; align-items: center; gap: 1rem;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity .8s ease, transform .8s ease;
+  z-index: 5;
+}
+.hero-nav.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+.hero-nav__progress-bar {
+  flex: 1; height: 4px;
+  background: rgba(255,255,255,.3);
+  border-radius: 2px; overflow: hidden;
+  cursor: pointer;
+}
+.hero-nav__progress {
+  width: 0; height: 100%;
+  background: #fff;
+}
 
   /* --- Hide main nav on reel state --- */
   .navigation.hidden {
@@ -197,37 +223,74 @@ a {
     transition: opacity 0.02s ease;
   }
 
-  /* Navigation */
-  .navigation {
-    position: absolute;
-    width: 100vw;
-    top: 1rem;
-    right: 1rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    /* gap: 1rem; */
-    border-bottom: 1px solid var(--color-muted);
-    z-index: 1000;
-  }
+/* Navigation Base Styles */
+.navigation {
+  position: absolute;
+  width: 100vw;
+  top: 1rem;
+  right: 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  z-index: 1000;
+}
 
+/* Dark Theme Navigation (for index page) */
+.index-page .navigation {
+  border-bottom: 1px solid var(--nav-light-border);
+}
+
+.index-page .navigation a {
+  color: var(--nav-light-text);
+  background-color: var(--nav-light-bg);
+}
+
+.index-page .navigation a:hover {
+  background-color: var(--nav-light-hover-bg);
+  color: var(--nav-light-hover-text);
+}
+
+.index-page .navigation a.active {
+  background-color: var(--nav-light-hover-bg);
+  color: var(--nav-light-hover-text);
+}
+
+.index-page .dropdown-menu li a {
+  color: var(--nav-light-text);
+  background-color: var(--nav-light-bg);
+}
+
+/* Light Theme Navigation (for other pages) */
+body:not(.index-page) .navigation {
+  border-bottom: 1px solid var(--nav-dark-border);
+}
+
+body:not(.index-page) .navigation a {
+  color: var(--nav-dark-text);
+  background-color: var(--nav-dark-bg);
+}
+
+body:not(.index-page) .navigation a:hover {
+  background-color: var(--nav-dark-hover-bg);
+  color: var(--nav-dark-hover-text);
+}
+
+body:not(.index-page) .navigation a.active {
+  background-color: var(--nav-dark-hover-bg);
+  color: var(--nav-dark-hover-text);
+}
+
+body:not(.index-page) .dropdown-menu li a {
+  color: var(--nav-dark-text);
+  background-color: var(--nav-dark-bg);
+}
+
+/* Shared Navigation Styles */
 .navigation a {
   font-size: 1rem;
-  color: var(--color-card-bg);
   padding: 0.5rem 1rem;
-  /* background-color: var(--color-card-bg); */
   border-radius: 4px;
   transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
-}
-
-.navigation a:hover {
-  background-color: var(--color-card-bg-hover);
-  color: var(--color-accent);
-}
-
-.navigation a.active {
-  background-color: var(--color-accent);
-  color: var(--color-card-bg);
 }
 
 .dropdown-menu {
@@ -244,8 +307,6 @@ a {
 
 .dropdown-menu li a {
   padding: 0.5rem 1rem;
-  color: white;
-  /* background-color: var(--color-card-bg); */
   border-radius: 4px;
   transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
   white-space: nowrap;

@@ -3,21 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jazmin Zhao</title>
-    <link rel="stylesheet" href="https://use.typekit.net/gve3tpm.css">
-    <link rel="stylesheet" href="stylesheet.css">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
-    <script src="https://player.vimeo.com/api/player.js"></script>
+    <title>Films</title>
+    <script src="./script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./stylesheet.css">
+    <style>
+        /* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #1a1a1a;
+    width: 100vw;
+    margin: 0 auto;
+    padding: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+}
+
+h2{
+    font-size: 1.2rem;
+    font-weight: 500;
+    /* margin-bottom: 1rem; */
+    color: #333;
+}
+
+/* Header */
+.page-header {
+    margin-bottom: 1.5rem;
+}
+
+.page-title {
+    font-size: 2.25rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+}
+
+.background-wrapper {
+    width: 100%;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.vertical-line {
+    width: 10rem;
+    height: 100%;
+    background-color: none;
+    border-right: 1px solid #ccc;
+    z-index: 1;
+}
+
+
+.content-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-left: 10rem;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    overflow-y: auto;
+    overflow: -moz-scrollbars-none;
+
+}
+.content-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+.film-item {
+    display: flex;
+    width: 50%;
+    flex-direction: row;
+    align-items: top;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    gap: 2rem;
+}
+
+.film-title {
+    flex: 1;
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #333;
+    min-width: 200px;
+}
+
+.img-container {
+    flex: 1;
+    max-width: 400px;
+    height: 250px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    overflow: hidden;
+}
+
+.img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+}
+/* Hide scrollbar for WebKit browsers */
+body::-webkit-scrollbar {
+    display: none;
+}
+    </style>
 
 </head>
-<body class="index-page">
-    <div id="nav-container"></div>
-    <div id="hero-container"></div>
+<body>
+    <header class="page-header">
+        <nav id="nav-container"></nav>
+    </header>
+        <div class="background-wrapper">
+
+        <div class="vertical-line">
+        </div>
+
+        </div>
+        <div class="content-wrapper">
+            </div>
+        <!-- <div class="film-list">
+            <div class="film-item" id="film-1">
+                <h2>Film 1</h2>
+                <p>Description of Film 1.</p>
+            </div>
+            <div class="film-item" id="film-2">
+                <h2>Film 2</h2>
+                <p>Description of Film 2.</p>
+            </div>
+             Add more film items as needed 
+        </div> -->
+
 
     <script>
         $(document).ready(function() {
+
             const data = {
                 "hero": {
                     "director_reel": "1092319647"
@@ -26,9 +170,11 @@
                     "conversation-among-the-ruins": {
                         "title": "Conversation Among the Ruins",
                         "year": 2025,
+                        "url": "./conversation-among-the-ruins.html",
                         "location": "China/United States",
                         "shortDescription": "In Lianzhou, a rainy southern region of China, nestled around a small-town art museum, two women cross paths at a photography exhibition, forming a fleeting connection that shapes and reproduces their desires in ways beyond their perception.",
                         "duration": "00:25:59",
+                        "thumbnail": "./static/conversation-among-the-ruins/stills/Still 1_01_11_28_06.jpg",
                         "poster": "./static/conversation-among-the-ruins/poster.jpg",
                         "trailer": "1092285786",
                         "awards": [
@@ -84,8 +230,10 @@
                         "title": "Life is Elsewhere",
                         "year": 2024,
                         "location": "United States",
+                        "url": "./life-is-elsewhere.html",
                         "shortDescription": "A Chinese graduate student burdened by disillusionment with her homeland, and her Chinese-American student passionately drawn to a culture she only knows from afar, form an unexpected bond through weekly language lessons. As their personal projections of “home” begin to clash, the fragile connection between them unravels, revealing the quiet tensions between identity, longing, and the untranslatable distances between individuals.",
                         "duration": "00:11:10",
+                        "thumbnail": "./static/life-is-elsewhere/Life is Elsewhere/stills/LiE_Still4.png",
                         "trailer": "871993431",
                         "cast": [
                             {
@@ -145,8 +293,10 @@
                         "title": "Under the Skin",
                         "year": 2023,
                         "location": "United States",
+                        "url": "./under-the-skin.html",
                         "shortDescription": "As a director attempts to document an actor preparing for a stage role, the lines between observation and manipulation blur. What begins as a study of performance gradually transforms into a surreal reflection on authorship, identity, and the power of the gaze, where the subject and filmmaker mirror each other in an ever-shifting dance of control and vulnerability.",
                         "duration": "00:05:00",
+                        "thumbnail": "./static/under-the-skin/Under the Skin/stills/Copy of UndertheSkin_FilmStill9.png",
                         "trailer": "871992625",
                         "cast": [
                             {
@@ -185,6 +335,7 @@
                         "title": "Flow Like Wine",
                         "year": 2022,
                         "location": "United States",
+                        "url": "./flow-like-wine.html",
                         "shortDescription": "In the quiet after a wedding, a bride and groom return to the place where it all began. As memories and reality begin to blur, the bride finds herself drifting between presence and absence, love and solitude. A meditation on intimacy, dissonance, and the spaces we can never truly share.",
                         "duration": "00:04:28",
                         "trailer": "",
@@ -226,8 +377,10 @@
                         "title": "Scenes From Life",
                         "year": 2021,
                         "location": "China",
+                        "url": "./scenes-from-life.html",
                         "shortDescription": "During the pandemic, three strangers move through quiet acts of longing and resistance: a deliveryman shadowed by suspicion, a disabled man seeking motion from stillness, and a security guard learning a new language in silence.",
                         "duration": "00:13:31",
+                        "thumbnail": "./static/scenes-from-life/Scenes From Life/04.png",
                         "trailer": "1092367508",
                         "cast": [
                             {
@@ -284,8 +437,10 @@
                         "title": "Bluest Nude",
                         "year": 2024,
                         "location": "United States",
+                        "url": "./bluest-nude.html",
                         "shortDescription": "A woman trying to escape from different scenarios tells her story while reconstructing the narrative every time, which eventually turns out to be all AI-generated by the power behind it.",
                         "duration": "00:05:50",
+                        "thumbnail": "./static/bluest-nude/Bluest Nude/01.png",
                         "trailer": "",
                         "cast": [
                             {
@@ -312,8 +467,10 @@
                         "title": "Linger",
                         "year": 2021,
                         "location": "China",
+                        "url": "./linger.html",
                         "shortDescription": "Visual Exercise | Silent Scene: Coming Together",
                         "duration": "00:01:50",
+                        "thumbnail": "./static/linger/stills/4.jpg",
                         "trailer": "",
                         "cast": [
                             {
@@ -390,66 +547,33 @@
                 }
 
             };
+        
+        class FilmCard {
+            constructor(data) {
+                this.data = data;
+            }
+            
+            buildFilmCards() {
+                return Object.values(this.data.films).map(film => `
+                    <div class="film-item">
+                        <a href="${film.url}"><h2 class="film-title">${film.title}</h2></a>
+                        <div class="img-container">
+                            <img src="${film.thumbnail}" />
+                        </div>
+                    </div>
+                `).join('');
+                };
+            }
 
-            // Add nav bar
             const navContainer = $('#nav-container');
             const selectFilms = [data.films['conversation-among-the-ruins'], data.films['life-is-elsewhere'], data.films['under-the-skin'], data.films['scenes-from-life']];
             const navBar = buildNavigation(data.films);
             navContainer.append(navBar);
+            const filmCards = new FilmCard(data);
+            $('.content-wrapper').append(filmCards.buildFilmCards());
 
-            // Add hero section to hero container
-            const heroContainer = $('#hero-container');
-            
-            // Create films object with proper structure for buildHeroSection
-            const filmsForHero = {
-                'conversation-among-the-ruins': data.films['conversation-among-the-ruins'],
-                'life-is-elsewhere': data.films['life-is-elsewhere'],
-                'under-the-skin': data.films['under-the-skin'],
-                'scenes-from-life': data.films['scenes-from-life']
-            };
-            
-            const heroSection = buildHeroSection(data.hero.director_reel, filmsForHero);
-            heroContainer.append(heroSection);
-            
-            // Initialize hover functionality after hero section is added to DOM
-            initializeHeroHovers(data.hero.director_reel);
-
-            // after DOM + Vimeo SDK are ready…
-            const container = document.querySelector('.hero-nav-container');
-            const iframeEl  = document.getElementById('hero-video-iframe');
-            const heroNav    = new HeroNav(container, iframeEl);
-
-                // Intercept Reel link on index page
-            $('#reel-button').on('click', function(e) {
-                const path = window.location.pathname;
-                if (path === '/' || path.endsWith('/index.html')) {
-                    e.preventDefault();
-
-                    // Push new URL (no page reload)
-                    history.pushState({ view: 'reel' }, '', '/?reel');
-
-                    // Animate film titles down + fade out
-                    $('.film-titles').addClass('animating');
-
-                    heroNav.show();
-                }
-        });
-
-            // // Handle back/forward browser buttons
-            // window.addEventListener('popstate', function(event) {
-            //     if (event.state && event.state.view === 'reel') {
-            //         // Ensure animations/nav reflect reel state
-            //         $('.film-titles').addClass('animating');
-            //         const iframe = $('#hero-video-iframe');
-            //         iframe.attr('src', iframe.attr('src').replace('&background=1', ''));
-            //     } else {
-            //         // Revert to default hero
-            //         $('.film-titles').removeClass('animating');
-            //         const iframe = $('#hero-video-iframe');
-            //         iframe.attr('src', iframe.attr('src') + '&background=1');
-            //     }
-            // });
         });
     </script>
+
+
 </body>
-</html>

@@ -1,23 +1,180 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jazmin Zhao</title>
-    <link rel="stylesheet" href="https://use.typekit.net/gve3tpm.css">
-    <link rel="stylesheet" href="stylesheet.css">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
-    <script src="https://player.vimeo.com/api/player.js"></script>
+    <title>Conversation Among the Ruins</title>
+    <!-- <script src="./script.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="./filmScript.js"></script>
+    <link rel="stylesheet" href="./stylesheet.css">
+    <style>
+        
+        /* Film details specific styling */
+        .film-layout {
+            display: flex;
+            gap: 4rem;
+            /* max-width: 1200px; */
+            margin: 0 auto;
+            margin-top:5rem;
+            /* padding: 2rem; */
+            padding-bottom: 4rem;
+        }
+
+        .film-details{
+            display: flex;
+            flex-direction: column;
+        }
+
+        .film-poster {
+            flex: 1;
+            max-width: 15rem;
+        }
+
+        .film-poster img {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .film-content {
+            flex: 1;
+            max-width: 33.333%;
+        }
+
+        /* Gallery styling */
+        .gallery-container {
+            /* position: relative; */
+            height: 100vh;
+            /* top: 60px; */
+            /* Adjust based on nav bar height */
+            right: 0;
+            bottom: 0;
+            width: 30%;
+            background: white;
+            border-left: 2px solid #ccc;
+            overflow: hidden;
+            resize: horizontal;
+            z-index: 100;
+            display: flex;
+            flex-direction: row;
+        }
 
 
+        .gallery-content::-webkit-scrollbar {
+            display: none;
+        }
+
+        .gallery-resize-handle {
+            position: relative;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 10px;
+            cursor: ew-resize;
+            background: #f0f0f0;
+            height: 100vh;
+        }
+
+        .gallery-content {
+            height: 100%;
+            overflow-y: auto;
+            padding: 1rem;
+            overflow: -moz-scrollbars-none;
+        }
+
+        .gallery-wrapper {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: auto;
+        }
+
+        .gallery-images {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-left: 6vw;
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Trailer styling */
+        .film-trailer {
+            position: relative;
+            min-height: 100vh; /* Full viewport height */
+            width: 100%;
+            z-index: 200;
+            border-top: 1px solid #333;
+            /* background: white; */
+            /* margin-top: 100vh; /* Push it down below the content */
+            /* margin-bottom: 40vh; Space for the sticky trailer */ 
+        }
+
+        .trailer-container {
+            position: relative;
+            /* top: calc(100vh / 6); 1/6th of viewport height from top */
+            width: 100%;
+            height: calc(100vh - 60px); /* Full viewport height minus navbar */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-bottom: 2rem; /* Space for the sticky trailer */
+        }
+
+        .trailer-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            max-width: 66.666vw; /* 2/3 of viewport width */
+            margin-top: calc(100vh / 12); /* 1/12th of viewport height from top */
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .film-layout {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .film-poster,
+            .film-content {
+                max-width: 100%;
+            }
+
+            .gallery-container {
+                position: relative;
+                width: 100%;
+                height: 400px;
+                resize: vertical;
+            }
+
+            .film-trailer {
+                position: relative;
+                bottom: auto;
+                left: auto;
+                transform: none;
+                width: 100%;
+                height: 300px;
+                margin-top: 2rem;
+            }
+        }
+    </style>
 </head>
-<body class="index-page">
+
+<body>
     <div id="nav-container"></div>
-    <div id="hero-container"></div>
+
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             const data = {
                 "hero": {
                     "director_reel": "1092319647"
@@ -27,16 +184,17 @@
                         "title": "Conversation Among the Ruins",
                         "year": 2025,
                         "location": "China/United States",
-                        "shortDescription": "In Lianzhou, a rainy southern region of China, nestled around a small-town art museum, two women cross paths at a photography exhibition, forming a fleeting connection that shapes and reproduces their desires in ways beyond their perception.",
+                        "description": "In Lianzhou, a rainy southern region of China, nestled around a small-town art museum, two women cross paths at a photography exhibition, forming a fleeting connection that shapes and reproduces their desires in ways beyond their perception.",
                         "duration": "00:25:59",
                         "poster": "./static/conversation-among-the-ruins/poster.jpg",
+                        "stills": "./static/conversation-among-the-ruins/stills/",
                         "trailer": "1092285786",
                         "awards": [
-                                {   
-                                    "name": "Albert P. Weisman Award", 
-                                    "year": "2025",
-                                    "organization": ""
-                                }
+                            {
+                                "name": "Albert P. Weisman Award",
+                                "year": "2025",
+                                "organization": ""
+                            }
                         ],
                         "cast": [
                             {
@@ -345,111 +503,131 @@
                     }
                 },
 
-                "filmography":{
+                "filmography": {
                     "shorts": [
-                        {"title": "An Acting Student", "year": 2025, "location": "Chicago", "role": "Directing of Photography"},
-                        {"title": "The One Left Behind", "year": 2025, "location": "Chicago", "role": "Production Assistant"},
-                        {"title": "Conversation Among the Ruins", "year": 2025, "location": "Lianzhou, China", "role": "Writer, Director, & Editor"},
-                        {"title": "Bluest Nude", "year": 2024, "location": "Chicago", "role": "Writer, Director, Producer & Editor"},
-                        {"title": "Masacote", "year": 2023, "location": "Chicago", "role": "Assistant Producer & Editor"},
-                        {"title": "The Last Chance", "year": 2023, "location": "Chicago", "role": "Art Assistant"},
-                        {"title": "Bush", "year": 2023, "location": "Chicago", "role": "Second Assistant Camera"},
-                        {"title": "The Supporting Actor", "year": 2023, "location": "NYC", "role": "Second Assistant Director"},
-                        {"title": "Hair Wraith", "year": 2023, "location": "Chicago", "role": "First Assistant Camera"},
-                        {"title": 'Life is Elsewhere', 'year': 2023, 'location': 'Chicago', 'role': 'Writer, Director, Producer & Editor'},
-                        {"title":"Tale of a Dear","year":"2023","location":"Chicago","role":"First Assistant Director"},
-                        {"title":"Work Toward Your Dream","year":"2023","location":"Chicago","role":"Director of Photography"},
-                        {"title":"Toronto","year":"2023","location":"Chicago","role":"Line Producer & Assistant Director"},
-                        {"title":"Shameless Geese","year":"2023","location":"Chicago","role":"Location Audio"},
-                        {"title":"Split","year":"2023","location":"Chicago","role":"Director of Photography"},
-                        {"title":"Under the Skin","year":"2022","location":"Chicago","role":"Writer, Director, Producer & Editor"},
-                        {"title":"Madre Hermosa","year":"2022","location":"Chicago","role":"Director of Photography"},
-                        {"title":"Love Bites","year":"2022","location":"Chicago","role":"Assistant Director"},
-                        {"title":"Cherry on Top","year":"2022","location":"Chicago","role":"Assistant Camera"},
-                        {"title":"Flow Like Wine","year":"2022","location":"Chicago","role":"Writer, Director, Producer & Editor"},
-                        {"title":"Yesterday, Today & Tomorrow", "year": 2022, "location": "Chicago", "role": "Assistant Director"},
-                        {"title": "Linger", "year": 2021, "location": "Guangzhou", "role": "Writer, Director, Director of Photography & Editor"},
-                        {"title": "Scenes From Life", "year": 2021, "location": "Dongguan", "role": "Writer, Director, DP & Editor"},
-                        {"title": "Typhoon", "year": 2020, "location": "Guangdong", "role": "Assistant Director & Assistant Producer"},
-                        {"title": "Insomnia Hotel", "year": 2020, "location": "Shenzhen", "role": "Assistant Director & Assistant Camera"},
-                        {"title": "Blocked", "year": 2019, "location": "Guangzhou", "role": "Director"},
-                        {"title": "Soft and Rigid", "year": 2019, "location": "Guangzhou", "role": "Director, Co-DP & Editor"},
-                        {"title": 'Hui Mou', 'year': 2018, 'location': 'Dongguan', 'role': 'Script Supervisor'}
+                        { "title": "An Acting Student", "year": 2025, "location": "Chicago", "role": "Directing of Photography" },
+                        { "title": "The One Left Behind", "year": 2025, "location": "Chicago", "role": "Production Assistant" },
+                        { "title": "Conversation Among the Ruins", "year": 2025, "location": "Lianzhou, China", "role": "Writer, Director, & Editor" },
+                        { "title": "Bluest Nude", "year": 2024, "location": "Chicago", "role": "Writer, Director, Producer & Editor" },
+                        { "title": "Masacote", "year": 2023, "location": "Chicago", "role": "Assistant Producer & Editor" },
+                        { "title": "The Last Chance", "year": 2023, "location": "Chicago", "role": "Art Assistant" },
+                        { "title": "Bush", "year": 2023, "location": "Chicago", "role": "Second Assistant Camera" },
+                        { "title": "The Supporting Actor", "year": 2023, "location": "NYC", "role": "Second Assistant Director" },
+                        { "title": "Hair Wraith", "year": 2023, "location": "Chicago", "role": "First Assistant Camera" },
+                        { "title": 'Life is Elsewhere', 'year': 2023, 'location': 'Chicago', 'role': 'Writer, Director, Producer & Editor' },
+                        { "title": "Tale of a Dear", "year": "2023", "location": "Chicago", "role": "First Assistant Director" },
+                        { "title": "Work Toward Your Dream", "year": "2023", "location": "Chicago", "role": "Director of Photography" },
+                        { "title": "Toronto", "year": "2023", "location": "Chicago", "role": "Line Producer & Assistant Director" },
+                        { "title": "Shameless Geese", "year": "2023", "location": "Chicago", "role": "Location Audio" },
+                        { "title": "Split", "year": "2023", "location": "Chicago", "role": "Director of Photography" },
+                        { "title": "Under the Skin", "year": "2022", "location": "Chicago", "role": "Writer, Director, Producer & Editor" },
+                        { "title": "Madre Hermosa", "year": "2022", "location": "Chicago", "role": "Director of Photography" },
+                        { "title": "Love Bites", "year": "2022", "location": "Chicago", "role": "Assistant Director" },
+                        { "title": "Cherry on Top", "year": "2022", "location": "Chicago", "role": "Assistant Camera" },
+                        { "title": "Flow Like Wine", "year": "2022", "location": "Chicago", "role": "Writer, Director, Producer & Editor" },
+                        { "title": "Yesterday, Today & Tomorrow", "year": 2022, "location": "Chicago", "role": "Assistant Director" },
+                        { "title": "Linger", "year": 2021, "location": "Guangzhou", "role": "Writer, Director, Director of Photography & Editor" },
+                        { "title": "Scenes From Life", "year": 2021, "location": "Dongguan", "role": "Writer, Director, DP & Editor" },
+                        { "title": "Typhoon", "year": 2020, "location": "Guangdong", "role": "Assistant Director & Assistant Producer" },
+                        { "title": "Insomnia Hotel", "year": 2020, "location": "Shenzhen", "role": "Assistant Director & Assistant Camera" },
+                        { "title": "Blocked", "year": 2019, "location": "Guangzhou", "role": "Director" },
+                        { "title": "Soft and Rigid", "year": 2019, "location": "Guangzhou", "role": "Director, Co-DP & Editor" },
+                        { "title": 'Hui Mou', 'year': 2018, 'location': 'Dongguan', 'role': 'Script Supervisor' }
                     ],
                     "FEATURE DOCUMENTARIES": [
-                        {"title": "A Photographic Memory", "year": 2024, "location": "Los Angeles", "role": "Assistant Producer"},
-                        {"title": "Together", "year": 2023, "location": "New York City", "role": "Assistant Producer & Editor"}
+                        { "title": "A Photographic Memory", "year": 2024, "location": "Los Angeles", "role": "Assistant Producer" },
+                        { "title": "Together", "year": 2023, "location": "New York City", "role": "Assistant Producer & Editor" }
                     ],
                     "WEB SERIES": [
-                        {"title": "Apartment 51", "year": 2023, "location": "Chicago", "role": "Ep 1 Camera Operator"},
-                        {"title": "Apartment 51", "year": 2023, "location": "Chicago", "role": "Ep 2 Assistant Director"},
-                        {"title": "Apartment 51", "year": 2023, "location": "Chicago", "role": "Ep 3 Episode Producer & Sound"},
-                        {"title": "Apartment 51", "year": 2023, "location": "Chicago", "role": "Ep 5 Co-Director"}
-                    
+                        { "title": "Apartment 51", "year": 2023, "location": "Chicago", "role": "Ep 1 Camera Operator" },
+                        { "title": "Apartment 51", "year": 2023, "location": "Chicago", "role": "Ep 2 Assistant Director" },
+                        { "title": "Apartment 51", "year": 2023, "location": "Chicago", "role": "Ep 3 Episode Producer & Sound" },
+                        { "title": "Apartment 51", "year": 2023, "location": "Chicago", "role": "Ep 5 Co-Director" }
+
                     ]
                 }
 
             };
 
+
             // Add nav bar
             const navContainer = $('#nav-container');
-            const selectFilms = [data.films['conversation-among-the-ruins'], data.films['life-is-elsewhere'], data.films['under-the-skin'], data.films['scenes-from-life']];
             const navBar = buildNavigation(data.films);
             navContainer.append(navBar);
 
-            // Add hero section to hero container
-            const heroContainer = $('#hero-container');
-            
-            // Create films object with proper structure for buildHeroSection
-            const filmsForHero = {
-                'conversation-among-the-ruins': data.films['conversation-among-the-ruins'],
-                'life-is-elsewhere': data.films['life-is-elsewhere'],
-                'under-the-skin': data.films['under-the-skin'],
-                'scenes-from-life': data.films['scenes-from-life']
-            };
-            
-            const heroSection = buildHeroSection(data.hero.director_reel, filmsForHero);
-            heroContainer.append(heroSection);
-            
-            // Initialize hover functionality after hero section is added to DOM
-            initializeHeroHovers(data.hero.director_reel);
+            filmToShow = getPageTitle();
+            pageData = data.films[filmToShow];
 
-            // after DOM + Vimeo SDK are ready…
-            const container = document.querySelector('.hero-nav-container');
-            const iframeEl  = document.getElementById('hero-video-iframe');
-            const heroNav    = new HeroNav(container, iframeEl);
+            // Create container for film details
+            const contentContainer = $('<div id="content-container"></div>');
+            $('body').append(contentContainer);
 
-                // Intercept Reel link on index page
-            $('#reel-button').on('click', function(e) {
-                const path = window.location.pathname;
-                if (path === '/' || path.endsWith('/index.html')) {
-                    e.preventDefault();
+            // Create and render film details
+            const filmDetails = new FilmDetails(pageData);
+            contentContainer.html(filmDetails.render());
 
-                    // Push new URL (no page reload)
-                    history.pushState({ view: 'reel' }, '', '/?reel');
+            // Function to load images from the stills directory
+            async function loadStillImages() {
+                if (!pageData.stills) return;
 
-                    // Animate film titles down + fade out
-                    $('.film-titles').addClass('animating');
+                try {
+                    const response = await fetch(pageData.stills);
+                    const text = await response.text();
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(text, 'text/html');
+                    const links = Array.from(doc.querySelectorAll('a'));
 
-                    heroNav.show();
+                    const imageFiles = links
+                        .map(link => link.href)
+                        .filter(href => href.match(/\.(jpg|jpeg|png|gif)$/i))
+                        .map(href => href.split('/').pop());
+
+                    const galleryContainer = document.getElementById('gallery-images');
+                    imageFiles.forEach(filename => {
+                        const img = document.createElement('img');
+                        img.src = pageData.stills + filename;
+                        img.alt = 'Film Still';
+                        img.className = 'gallery-image';
+                        galleryContainer.appendChild(img);
+                    });
+                } catch (error) {
+                    console.error('Error loading stills:', error);
                 }
-        });
+            }
 
-            // // Handle back/forward browser buttons
-            // window.addEventListener('popstate', function(event) {
-            //     if (event.state && event.state.view === 'reel') {
-            //         // Ensure animations/nav reflect reel state
-            //         $('.film-titles').addClass('animating');
-            //         const iframe = $('#hero-video-iframe');
-            //         iframe.attr('src', iframe.attr('src').replace('&background=1', ''));
-            //     } else {
-            //         // Revert to default hero
-            //         $('.film-titles').removeClass('animating');
-            //         const iframe = $('#hero-video-iframe');
-            //         iframe.attr('src', iframe.attr('src') + '&background=1');
-            //     }
-            // });
+            // Initialize gallery
+            loadStillImages();
+
+            // Make gallery resizable
+            const gallery = document.querySelector('.gallery-container');
+            const handle = document.querySelector('.gallery-resize-handle');
+
+            if (handle && gallery) {
+                let isResizing = false;
+                let startX;
+                let startWidth;
+
+                handle.addEventListener('mousedown', (e) => {
+                    isResizing = true;
+                    startX = e.clientX;
+                    startWidth = gallery.offsetWidth;
+                });
+
+                document.addEventListener('mousemove', (e) => {
+                    if (!isResizing) return;
+
+                    const width = startWidth - (e.clientX - startX);
+                    if (width > 200 && width < window.innerWidth * 0.8) {
+                        gallery.style.width = width + 'px';
+                    }
+                });
+
+                document.addEventListener('mouseup', () => {
+                    isResizing = false;
+                });
+            }
         });
     </script>
 </body>
+
 </html>

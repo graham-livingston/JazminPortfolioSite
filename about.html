@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About</title>
+    <script src="script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./stylesheet.css">
+
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #1a1a1a;
+            width: 100vw;
+            margin: 0 auto;
+            padding: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            font-size: 15px;
+            letter-spacing: -0.01em;
+        }
+
+        /* Hide scrollbar for WebKit browsers */
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Header */
+        .page-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .page-title {
+            font-size: 2.25rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.02em;
+        }
+
+        /* Bio section */
+        .bio-wrapper {
+            width: 100vw;
+            border-bottom: 1px solid #e5e5e5;
+            padding-top: 4%;
+        }
+
+        .bio-container {
+            margin-left: 15rem;
+            margin-right: 15rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 2.5rem;
+            gap: 3rem;
+        }
+
+        .bio-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .bio-title {
+            font-size: 1.25rem;
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+            letter-spacing: -0.01em;
+        }
+
+        .bio-text {
+            margin-bottom: 1.75rem;
+            line-height: 1.6;
+            font-size: 15px;
+            color: #2a2a2a;
+            max-width: 65ch;
+        }
+
+        .profile-image-container {
+            flex-shrink: 0;
+        }
+
+        .profile-image {
+            width: 220px;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        /* Social links */
+        .socials {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .social-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .social-label {
+            font-weight: 500;
+            min-width: 70px;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .social-link a {
+            color: #1a1a1a;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s ease;
+        }
+
+        .social-link a:hover {
+            color: #0066cc;
+        }
+
+        /* Resume section */
+        .resume-wrapper {
+            width: 100vw;
+            height: auto;
+            margin-bottom: 3rem;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .left-block {
+            width: 15rem;
+            height: auto;
+            left: 0;
+            top: 0;
+            padding-top: 2rem;
+            padding-left: 1rem;
+            border-right: 1px solid #e5e5e5;
+        }
+
+        .right-block {
+            width: auto;
+            height: auto;
+        }
+
+        .resume {
+            margin-top: 2.5rem;
+            margin-left: 10rem;
+            margin-right: 15rem;
+        }
+
+        .resume-section {
+            margin-bottom: 2.25rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            letter-spacing: -0.01em;
+            color: #1a1a1a;
+        }
+
+        /* Education styles */
+        .education-list {
+            list-style: none;
+        }
+
+        .education-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-direction: row;
+            margin-bottom: 1rem;
+            border-left: 1px solid #e5e5e5;
+            padding: 1.25rem;
+            /* background-color: #fafafa; */
+            /* border-radius: 6px;
+            border: 1px solid #f0f0f0; */
+        }
+
+        .education-left {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .education-right {
+            display: flex;
+            flex-direction: column;
+            text-align: right;
+        }
+
+        .institution-name {
+            font-weight: 500;
+            font-size: 16px;
+            margin-bottom: 0.4rem;
+            color: #1a1a1a;
+        }
+
+        .degree {
+            margin-bottom: 0.6rem;
+            color: #555;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .awards-list {
+            list-style: none;
+            margin-top: 0.4rem;
+        }
+
+        .awards-list li {
+            color: #0066cc;
+            font-size: 13px;
+            margin-bottom: 0.2rem;
+        }
+
+        .location {
+            color: #666;
+            margin-bottom: 0.2rem;
+            font-size: 14px;
+        }
+
+        .graduation-date {
+            color: #666;
+            font-style: italic;
+            font-size: 14px;
+        }
+
+        /* Work experience styles */
+        .work-list {
+            list-style: none;
+        }
+
+        .work-item {
+            margin-bottom: 1.5rem;
+            padding: 1.25rem;
+            background-color: #fafafa;
+            border-radius: 6px;
+            border: 1px solid #f0f0f0;
+        }
+
+        .job-title {
+            font-weight: 500;
+            font-size: 16px;
+            margin-bottom: 0.4rem;
+            color: #1a1a1a;
+        }
+
+        .job-dates {
+            color: #666;
+            margin-bottom: 0.75rem;
+            font-style: italic;
+            font-size: 14px;
+        }
+
+        .responsibilities-list {
+            margin: 0.75rem 0;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .responsibilities-list li {
+            margin-bottom: 0.5rem;
+            font-size: 14px;
+            line-height: 1.5;
+            color: #2a2a2a;
+            position: relative;
+            padding-left: 1rem;
+        }
+
+        /* Custom + bullet points */
+        .responsibilities-list li:before {
+            content: '+';
+            position: absolute;
+            left: 0;
+            top: 0;
+            color: #ccc;
+            font-weight: 300;
+            font-size: 14px;
+        }
+
+        .job-location {
+            color: #666;
+            font-style: italic;
+            margin-top: 0.5rem;
+            font-size: 13px;
+        }
+
+        /* Skills styles */
+        .skills-container {
+            background-color: #fafafa;
+            padding: 1.25rem;
+            border-radius: 6px;
+            border: 1px solid #f0f0f0;
+        }
+
+        .skill-category {
+            margin-bottom: 0.75rem;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .skill-category strong {
+            text-transform: capitalize;
+            color: #1a1a1a;
+            font-weight: 500;
+        }
+
+        .languages {
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid #e5e5e5;
+            font-size: 14px;
+        }
+
+        .languages strong {
+            color: #1a1a1a;
+            font-weight: 500;
+        }
+
+        .language {
+            display: inline-block;
+            margin-right: 1rem;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .bio-container {
+                flex-direction: column;
+                align-items: center;
+                margin-left: 2rem;
+                margin-right: 2rem;
+                gap: 2rem;
+            }
+
+            .education-item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .education-right {
+                text-align: left;
+            }
+
+            .profile-image {
+                width: 180px;
+                height: 230px;
+            }
+
+            .page-title {
+                font-size: 1.75rem;
+            }
+
+            .resume {
+                margin-left: 2rem;
+                margin-right: 2rem;
+            }
+
+            .left-block {
+                display: none;
+            }
+        }
+    </style>
+
+</head>
+<body>    
+    <header class="page-header">
+        <nav id="nav-container"></nav>
+    </header>
+
+        <!-- <nav id="nav-container"></nav> -->
+
+    <!-- <main> -->
+        <div class="bio-wrapper">
+        <section class="bio-container">
+            <div class="bio-content">
+                <h3 class="bio-title">Bio</h3>
+                <p class="bio-text">
+                    Jiamin Zhao is a Chinese filmmaker based in Chicago. Her work, across fiction and documentary, explores themes of social alienation, cultural memory, and the reproduction of desires in the complex relationships between interior experiences and the external world. She graduated from Columbia College Chicago with an MFA degree in Cinema Directing and is a recipient of the Albert P. Weisman Award for her thesis, "Conversation Among the Ruins."
+                </p>
+                <div class="socials">
+                    <div class="social-item">
+                        <span class="social-label">Email:</span>
+                        <span class="social-link">
+                            <a href="mailto:jazminzhaojm@gmail.com">jazminzhaojm@gmail.com</a>
+                        </span>
+                    </div>
+                    <div class="social-item">
+                        <span class="social-label">LinkedIn:</span>
+                        <span class="social-link">
+                            <a href="https://www.linkedin.com/in/jazmin-zhao-50a62b24b" target="_blank">LinkedIn Profile</a>
+                        </span>
+                    </div>
+                    <div class="social-item">
+                        <span class="social-label">Vimeo:</span>
+                        <span class="social-link">
+                            <a href="https://vimeo.com/user116514822" target="_blank">Vimeo Portfolio</a>
+                        </span>
+                    </div>
+                    <div class="social-item">
+                        <span class="social-label">IMDB:</span>
+                        <span class="social-link">
+                            <a href="https://www.imdb.com/name/nm15448230/?ref_=tt_ov_1_1" target="_blank">IMDB Profile</a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="profile-image-container">
+                <img src="./static/jazmin-profile-pic.jpg" alt="Jiamin Zhao" class="profile-image">
+            </div>
+        </section>
+        </div>
+
+        <div class="resume-wrapper">
+            <div class="left-block"></div>
+        <section class="resume">
+            <div class="resume-section">
+                <h2 class="section-title">Education</h2>
+                <ul class="education-list education-cv"></ul>
+            </div>
+            <div class="resume-section">
+                <h2 class="section-title">Work Experience</h2>
+                <ul class="work-list work-exp-cv"></ul>
+            </div>
+            <div class="resume-section">
+                <h2 class="section-title">Skills</h2>
+                <div class="skills-container skills-cv"></div>
+            </div>
+        </section>
+        <div class="right-block"></div>
+        </div>
+    <!-- </main> -->
+
+    <script>
+        $(document).ready(function() {
+            const data = {
+                "hero": {
+                    "director_reel": "1092319647"
+                },
+                "films": {
+                    "conversation-among-the-ruins": {
+                        "title": "Conversation Among the Ruins",
+                        "year": 2025,
+                        "location": "China/United States",
+                        "shortDescription": "In Lianzhou, a rainy southern region of China, nestled around a small-town art museum, two women cross paths at a photography exhibition, forming a fleeting connection that shapes and reproduces their desires in ways beyond their perception.",
+                        "duration": "00:25:59",
+                        "poster": "./static/conversation-among-the-ruins/poster.jpg",
+                        "trailer": "1092285786",
+                        "awards": [
+                                {   
+                                    "name": "Albert P. Weisman Award", 
+                                    "year": "2025",
+                                    "organization": ""
+                                }
+                        ],
+                        "cast": [
+                            {
+                                "name": "Yenan Dong",
+                            },
+                            {
+                                "name": "Hui Yi",
+                            },
+                            {
+                                "name": "Yulu Gan",
+                            }
+                        ],
+                        "crew": [
+                            {
+                                "role": "Writer, Director and Editor",
+                                "name": "Jiamin Zhao"
+                            },
+                            {
+                                "role": "Producer",
+                                "name": "Roku Long"
+                            },
+                            {
+                                "role": "Line Producer",
+                                "name": "Yueqing Xu"
+                            },
+                            {
+                                "role": "Director of Photography",
+                                "name": "Songming Cai"
+                            },
+                            {
+                                "role": "Production Designer",
+                                "name": "Yan Liang"
+                            },
+                            {
+                                "role": "Sound",
+                                "name": "Hao Chen"
+                            },
+                            {
+                                "role": "Music",
+                                "name": "Winnie Liu"
+                            }
+                        ]
+                    },
+                    "life-is-elsewhere": {
+                        "title": "Life is Elsewhere",
+                        "year": 2024,
+                        "location": "United States",
+                        "shortDescription": "A Chinese graduate student burdened by disillusionment with her homeland, and her Chinese-American student passionately drawn to a culture she only knows from afar, form an unexpected bond through weekly language lessons. As their personal projections of 'home' begin to clash, the fragile connection between them unravels, revealing the quiet tensions between identity, longing, and the untranslatable distances between individuals.",
+                        "duration": "00:11:10",
+                        "trailer": "871993431",
+                        "cast": [
+                            {
+                                "name": "Jiseung Cho",
+                            },
+                            {
+                                "name": "Erin Luo",
+                            },
+                            {
+                                "name": "Anita Ho",
+                            }
+                        ],
+                        "crew": [
+                            {
+                                "role": "Writer, Director and Editor",
+                                "name": "Jiamin Zhao"
+                            },
+                            {
+                                "role": "Producer",
+                                "name": "Roku Long"
+                            },
+                            {
+                                "role": "Line Producer",
+                                "name": "Lorena De Leon"
+                            },
+                            {
+                                "role": "Director of Photography",
+                                "name": "Lorena De Leon"
+                            },
+                            {
+                                "role": "Gaffer",
+                                "name": "Jenny Popovich"
+                            },
+                            {
+                                "role": "Production Design",
+                                "name": "Lijing Wang"
+                            },
+                            {
+                                "role": "Music",
+                                "name": "Winnie Liu"
+                            }
+                        ],
+                        "awards": [
+                            {
+                                "name": "Blue Glass Award - official selection",
+                                "year": "2024",
+                                "organization": "Blue Whisky International Film Festival"
+                            },
+                            {
+                                "name": "Best Narrative Short",
+                                "year": "2024",
+                                "organization": "Chicago Women Film Fest"
+                            }
+                        ]
+                    },
+                    "under-the-skin": {
+                        "title": "Under the Skin",
+                        "year": 2023,
+                        "location": "United States",
+                        "shortDescription": "As a director attempts to document an actor preparing for a stage role, the lines between observation and manipulation blur. What begins as a study of performance gradually transforms into a surreal reflection on authorship, identity, and the power of the gaze, where the subject and filmmaker mirror each other in an ever-shifting dance of control and vulnerability.",
+                        "duration": "00:05:00",
+                        "trailer": "871992625",
+                        "cast": [
+                            {
+                                "name": "Brandy Cheyenne Miller",
+                            },
+                            {
+                                "name": "Genevieve Corkey",
+                            }
+                        ],
+                        "crew": [
+                            {
+                                "role": "Writer, Director and Editor",
+                                "name": "Jiamin Zhao"
+                            },
+                            {
+                                "role": "Producer",
+                                "name": "Roku Long"
+                            },
+                            {
+                                "role": "Director of Photography",
+                                "name": "Lorena De Leon"
+                            },
+                            {
+                                "role": "Sound",
+                                "name": "Alessandra Forno"
+                            },
+                            {
+                                "role": "Gaffer",
+                                "name": "Andrew Nelson Jex"
+                            }
+                        ],
+                        "awards": [
+                        ]
+                    },
+                    "flow-like-wine": {
+                        "title": "Flow Like Wine",
+                        "year": 2022,
+                        "location": "United States",
+                        "shortDescription": "In the quiet after a wedding, a bride and groom return to the place where it all began. As memories and reality begin to blur, the bride finds herself drifting between presence and absence, love and solitude. A meditation on intimacy, dissonance, and the spaces we can never truly share.",
+                        "duration": "00:04:28",
+                        "trailer": "",
+                        "cast": [
+                            {
+                                "name": "Ariana Kanaya",
+                            },
+                            {
+                                "name": "Brandon Wiman",
+                            }
+                        ],
+                        "crew": [
+                            {
+                                "role": "Writer, Director, Producer and Editor",
+                                "name": "Jiamin Zhao"
+                            },
+                            {
+                                "role": "Director of Photography",
+                                "name": "Noah Chlebeck"
+                            },
+                            {
+                                "role": "Sound",
+                                "name": "Fara Rezaeipour"
+                            },
+                            {
+                                "role": "Music",
+                                "name": "Dehan Liang"
+                            }
+                        ],
+                        "awards": [
+                            {
+                                "name": "Short Film Nominee",
+                                "year": 2023,
+                                "organization": "Shorted"
+                            }
+                        ]
+                    },
+                    "scenes-from-life": {
+                        "title": "Scenes From Life",
+                        "year": 2021,
+                        "location": "China",
+                        "shortDescription": "During the pandemic, three strangers move through quiet acts of longing and resistance: a deliveryman shadowed by suspicion, a disabled man seeking motion from stillness, and a security guard learning a new language in silence.",
+                        "duration": "00:13:31",
+                        "trailer": "1092367508",
+                        "cast": [
+                            {
+                                "name": "Ziquan Wang",
+                            },
+                            {
+                                "name": "Xiansong Zhu",
+                            },
+                            {
+                                "name": "Jiehui Deng",
+                            },
+                            {
+                                "name": "Shihua Zhao",
+                            },
+                            {
+                                "name": "Qiaoyi Zhu",
+                            },
+                            {
+                                "name": "Xuming Xiang",
+                            },
+                            {
+                                "name": "Quanshi Huang",
+                            },
+                            {
+                                "name": "Daju Li",
+                            },
+                            {
+                                "name": "Yuwei Liu",
+                            },
+                            {
+                                "name": "Yangyu Zhong",
+                            },
+                            {
+                                "name": "Yuping Deng"
+                            }
+                        ],
+                        "crew": [
+                            {
+                                "role": "Writer, Director, Producer and Editor",
+                                "name": "Jiamin Zhao"
+                            },
+                            {
+                                "role": "Producer",
+                                "name": "Roku Long"
+                            },
+                            {
+                                "role": "Camera and Sound",
+                                "name": "Jiamin Zhao"
+                            }
+                        ],
+                        "awards": []
+                    },
+                    "bluest-nude": {
+                        "title": "Bluest Nude",
+                        "year": 2024,
+                        "location": "United States",
+                        "shortDescription": "A woman trying to escape from different scenarios tells her story while reconstructing the narrative every time, which eventually turns out to be all AI-generated by the power behind it.",
+                        "duration": "00:05:50",
+                        "trailer": "",
+                        "cast": [
+                            {
+                                "name": "Carol Rhyu",
+                            }
+                        ],
+                        "crew": [
+                            {
+                                "role": "Writer, Director, Producer and Editor",
+                                "name": "Jiamin Zhao"
+                            },
+                            {
+                                "role": "Director of Photography",
+                                "name": "Stephane Joseph"
+                            },
+                            {
+                                "role": "Assistant Director",
+                                "name": "Linhan Zhang"
+                            }
+                        ],
+                        "awards": []
+                    },
+                    "linger": {
+                        "title": "Linger",
+                        "year": 2021,
+                        "location": "China",
+                        "shortDescription": "Visual Exercise | Silent Scene: Coming Together",
+                        "duration": "00:01:50",
+                        "trailer": "",
+                        "cast": [
+                            {
+                                "name": "Angeli sofia Morillo Villasmil",
+                            },
+                            {
+                                "name": "Yangyu Zhong",
+                            }
+                        ],
+                        "crew": [
+                            {
+                                "role": "Writer, Director",
+                                "name": "Jiamin Zhao"
+                            }
+                        ],
+                        "awards": []
+                    },
+                },
+
+                "profile": {
+                    "name": "Jazmin Zhao",
+                    "bio": 'Jiamin Zhao is a Chinese filmmaker based in Chicago. Her work, across fiction and documentary, explores themes of social alienation, cultural memory, and the reproduction of desires in the complex relationships between interior experiences and the external world. She graduated from Columbia College Chicago with an MFA degree in Cinema Directing and is a recipient of the Albert P. Weisman Award for her thesis, "Conversation Among the Ruins."',
+                    "image": "./static/jazmin-profile-pic.JPG",
+                    "socials": {
+                        "email": "jazminzhaojm@gmail.com",
+                        "linkedin": "www.linkedin.com/in/jazmin-zhao-50a62b24b",
+                        "vimeo": "https://vimeo.com/user116514822",
+                        "imdb": "https://www.imdb.com/name/nm15448230/?ref_=tt_ov_1_1"
+                    }
+                },
+
+                "filmography":{
+                    "shorts": [
+                        {"title": "An Acting Student", "year": 2025, "location": "Chicago", "role": "Directing of Photography"},
+                        {"title": "The One Left Behind", "year": 2025, "location": "Chicago", "role": "Production Assistant"},
+                        {"title": "Conversation Among the Ruins", "year": 2025, "location": "Lianzhou, China", "role": "Writer, Director, & Editor"},
+                        {"title": "Bluest Nude", "year": 2024, "location": "Chicago", "role": "Writer, Director, Producer & Editor"},
+                        {"title": "Masacote", "year": 2023, "location": "Chicago", "role": "Assistant Producer & Editor"},
+                        {"title": "The Last Chance", "year": 2023, "location": "Chicago", "role": "Art Assistant"},
+                        {"title": "Bush", "year": 2023, "location": "Chicago", "role": "Second Assistant Camera"},
+                        {"title": "The Supporting Actor", "year": 2023, "location": "NYC", "role": "Second Assistant Director"},
+                        {"title": "Hair Wraith", "year": 2023, "location": "Chicago", "role": "First Assistant Camera"},
+                        {"title": 'Life is Elsewhere', 'year': 2023, 'location': 'Chicago', 'role': 'Writer, Director, Producer & Editor'},
+                        {"title":"Tale of a Dear","year":"2023","location":"Chicago","role":"First Assistant Director"},
+                        {"title":"Work Toward Your Dream","year":"2023","location":"Chicago","role":"Director of Photography"},
+                        {"title":"Toronto","year":"2023","location":"Chicago","role":"Line Producer & Assistant Director"},
+                        {"title":"Shameless Geese","year":"2023","location":"Chicago","role":"Location Audio"},
+                        {"title":"Split","year":"2023","location":"Chicago","role":"Director of Photography"},
+                        {"title":"Under the Skin","year":"2022","location":"Chicago","role":"Writer, Director, Producer & Editor"},
+                        {"title":"Madre Hermosa","year":"2022","location":"Chicago","role":"Director of Photography"},
+                        {"title":"Love Bites","year":"2022","location":"Chicago","role":"Assistant Director"},
+                        {"title":"Cherry on Top","year":"2022","location":"Chicago","role":"Assistant Camera"},
+                        {"title":"Flow Like Wine","year":"2022","location":"Chicago","role":"Writer, Director, Producer & Editor"},
+                        {"title":"Yesterday, Today & Tomorrow", "year": 2022, "location": "Chicago", "role": "Assistant Director"},
+                        {"title": "Linger", "year": 2021, "location": "Guangzhou", "role": "Writer, Director, Director of Photography & Editor"},
+                        {"title": "Scenes From Life", "year": 2021, "location": "Dongguan", "role": "Writer, Director, DP & Editor"},
+                        {"title": "Typhoon", "year": 2020, "location": "Guangdong", "role": "Assistant Director & Assistant Producer"},
+                        {"title": "Insomnia Hotel", "year": 2020, "location": "Shenzhen", "role": "Assistant Director & Assistant Camera"},
+                        {"title": "Blocked", "year": 2019, "location": "Guangzhou", "role": "Director"},
+                        {"title": "Soft and Rigid", "year": 2019, "location": "Guangzhou", "role": "Director, Co-DP & Editor"},
+                        {"title": 'Hui Mou', 'year': 2018, 'location': 'Dongguan', 'role': 'Script Supervisor'}
+                    ],
+                    "FEATURE DOCUMENTARIES": [
+                        {"title": "A Photographic Memory", "year": 2024, "location": "Los Angeles", "role": "Assistant Producer"},
+                        {"title": "Together", "year": 2023, "location": "New York City", "role": "Assistant Producer & Editor"}
+                    ],
+                    "WEB SERIES": [
+                        {"title": "Apartment 51", "year": 2023, "location": "Chicago", "role": "Ep 1 Camera Operator"},
+                        {"title": "Apartment 51", "year": 2023, "location": "Chicago", "role": "Ep 2 Assistant Director"},
+                        {"title": "Apartment 51", "year": 2023, "location": "Chicago", "role": "Ep 3 Episode Producer & Sound"},
+                        {"title": "Apartment 51", "year": 2023, "location": "Chicago", "role": "Ep 5 Co-Director"}
+                    ]
+                }
+            };
+
+            const cv = {
+                education: [
+                    {
+                        institution: "Columbia College Chicago",
+                        location: "Chicago, IL",
+                        degree: "Master of Fine Arts in Cinematic and Television Directing",
+                        graduationDate: "May 2025",
+                        awards: [{name: "Albert P. Weisman Award",
+                                    dates : ["2025"]
+                                }
+                            ]
+                    },
+                    {
+                        institution: "Guangdong University of Foreign Studies",
+                        location: "Guangzhou, China",
+                        degree: "Bachelor of Arts in English, Concentration in Culture and Communications",
+                        graduationDate: "June 2022",
+                        awards: [{name:"Dean's Scholarship of FELC",
+                        dates:["2019", "2020"]
+                    }, 
+                    {name:"Merit Student",
+                    dates: ["2019"]}]
+                    }
+                ],
+                workExperience: [
+                    {
+                        title: "Impact Producer",
+                        organization: "Foster Care Film & Community Engagement Project (FCFCEP)",
+                        location: "Remote",
+                        startDate: "Feb 2025",
+                        endDate: "Present",
+                        responsibilities: [
+                            "Establish partnerships with mission-aligned organizations to collaborate on community screening events, increasing target-audience engagement.",
+                            "Develop the impact campaign strategy by conducting in-depth archival research on AAPI history and foster-care systems and communicate that research to stakeholders as narrative briefs and impact reports.",
+                            "Manage databases of funding sources, venues, and advocacy networks to support long-term impact goals."
+                        ]
+                    },
+                    {
+                        title: "Teaching Assistant",
+                        organization: "Columbia College Chicago",
+                        location: "Chicago, IL",
+                        startDate: "Sep 2023",
+                        endDate: "Dec 2024",
+                        responsibilities: [
+                            "Provided individualized feedback on analytical and creative writing; led 300+ group discussions and assisted with course material development and coordinated logistics for experiential learning activities."
+                        ]
+                    },
+                    {
+                        title: "Event Technician",
+                        organization: "Film Row Cinema",
+                        location: "Chicago, IL",
+                        startDate: "Aug 2023",
+                        endDate: "Dec 2024",
+                        responsibilities: [
+                            "Operated projection and A/V systems for screenings and public programs; supported event logistics, technical setup, and live troubleshooting in a high-volume venue.",
+                            "Collaborated with clients and staff to ensure smooth execution of multimedia presentations and audience-facing experiences."
+                        ]
+                    },
+                    {
+                        title: "Assistant Producer",
+                        project: "A Photographic Memory",
+                        type: "Feature Documentary",
+                        startDate: "Feb 2024",
+                        endDate: "May 2024",
+                        responsibilities: [
+                            "Streamlined editorial workflows by managing multimedia archival logs and conducting targeted visual and contextual research to sharpen the film's narrative and historical framing.",
+                            "Developed funding and distribution strategy through targeted research, delivering pitch decks and grant proposals."
+                        ]
+                    },
+                    {
+                        title: "Additional Producer & Assistant Editor",
+                        project: "Together",
+                        type: "Feature Documentary",
+                        startDate: "June 2023",
+                        endDate: "Apr 2024",
+                        responsibilities: [
+                            "Led post-production operations by organizing a database of 500+ archival assets, interviews, transcripts, and multimedia files to enable cross-functional collaboration on source files.",
+                            "Handled rights clearance of all third party material, coordinating schedules across editorial, legal, and sound departments to hit all milestone deadlines."
+                        ]
+                    },
+                    {
+                        title: "Production Assistant Program & Distribution Intern",
+                        organization: "Women Make Movies",
+                        location: "New York, NY",
+                        startDate: "May 2023",
+                        endDate: "Aug 2023",
+                        responsibilities: [
+                            "Evaluated fiscal sponsorship applications, project proposals and pitch decks for impact potential and alignment.",
+                            "Maintained digital media assets for distribution and archival use; produced social media content to promote films, events, and organizational campaigns; coordinated a webinar series featuring filmmakers and industry experts."
+                        ]
+                    }
+                ],
+                skills: {
+                    technical: {
+                        camera: ["DSLR and Mirrorless Camera operation"],
+                        lighting: ["Lighting and Composition Design"],
+                        software: {
+                            editing: ["Adobe Premiere Pro", "Final Cut Pro", "Davinci Resolve"],
+                            graphics: ["Adobe Photoshop", "After Effects", "Adobe InDesign"],
+                            audio: ["Adobe Auditions"],
+                            writing: ["Movie Magic", "Final Draft"],
+                            productivity: ["Google Suite", "Microsoft Office Suite"],
+                            web: ["WordPress"],
+                            analytics: ["Metricool", "Hootsuite", "Sprout Social"]
+                        },
+                        other: ["Chinese-English Translation"]
+                    },
+                    languages: [
+                        { language: "Chinese", proficiency: "Native" },
+                        { language: "Cantonese", proficiency: "Native" },
+                        { language: "English", proficiency: "Fluent" }
+                    ]
+                }
+            }
+
+            class CVParser {
+                constructor(cvData) {
+                    this.cvData = cvData;
+                }
+
+                buildEducationHTML() {
+                    return this.cvData.education.map(edu => `
+                        <li class="education-item">
+                            <div class="education-left">
+                                <div class="institution-name">${edu.institution}</div>
+                                <div class="degree">${edu.degree}</div>
+                                <ul class="awards-list">
+                                    ${edu.awards.map(award => `<li>${award.name} (${award.dates.join(', ')})</li>`).join('')}
+                                </ul>
+                            </div>
+                            <div class="education-right">
+                                <div class="location">${edu.location}</div>
+                                <div class="graduation-date">${edu.graduationDate}</div>
+                            </div>
+                        </li>
+                    `).join('');
+                }
+
+                buildWorkExperienceHTML() {
+                    return this.cvData.workExperience.map(job => `
+                        <li class="work-item">
+                            <div class="job-title">${job.title}${job.organization ? `, ${job.organization}` : ''}${job.project ? `, ${job.project}` : ''}</div>
+                            <div class="job-dates">${job.startDate} - ${job.endDate}</div>
+                            <ul class="responsibilities-list">
+                                ${job.responsibilities.map(resp => `<li>${resp}</li>`).join('')}
+                            </ul>
+                            <div class="job-location">${job.location}</div>
+                        </li>
+                    `).join('');
+                }
+
+                buildSkillsHTML() {
+                    const { technical, languages } = this.cvData.skills;
+
+                    const technicalSkillsHTML = Object.entries(technical).map(([category, skills]) => `
+                        <div class="skill-category">
+                            <strong>${category}:</strong> ${Array.isArray(skills) ? skills.join(', ') : Object.values(skills).flat().join(', ')}
+                        </div>
+                    `).join('');
+
+                    const languagesHTML = languages.map(lang => `<span class="language">${lang.language} (${lang.proficiency})</span>`).join(', ');
+
+                    return `${technicalSkillsHTML}<div class="languages"><strong>Languages:</strong> ${languagesHTML}</div>`;
+                }
+            }
+
+            // Add nav bar
+            const navContainer = $('#nav-container');
+            const navBar = buildNavigation(data.films);
+            navContainer.append(navBar);
+            
+            // Initialize CV
+            const CV = new CVParser(cv);
+            $('.education-cv').html(CV.buildEducationHTML());
+            $('.work-exp-cv').html(CV.buildWorkExperienceHTML());
+            $('.skills-cv').html(CV.buildSkillsHTML());
+        });
+    </script>
+</body>
+</html>

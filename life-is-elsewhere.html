@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life Is Elsewhere</title>
+    <script src="./script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./stylesheet.css">
+</head>
+
+<body>
+    <div id="nav-container"></div>
+    <div id="content-container"></div>
+
+    <script>
+        $(document).ready(function () {
+            const data = {
+                "hero": {
+                    "director_reel": "./static/reel.mp4"
+                },
+
+                "films": {
+                    "Conversations among the ruins": {
+                        "year": 2025,
+                        "shortDescription": "lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        "duration": "2h 15m",
+                        "trailer": "./static/trailers/underTheSkin.mp4", //Not the correct video needs to be changed
+                        "awards": [
+                            "Best Director",
+                            "Best Cinematography"
+                        ]
+                    },
+                    "life is elsewhere": {
+                        "title": "Life is Elsewhere",
+                        "year": 2023,
+                        "shortDescription": "lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        "description": "lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        "duration": "2h 15m",
+                        "trailer": "871993431",
+                        "awards": [
+                            "Best Director",
+                            "Best Cinematography"
+                        ]
+                    },
+
+                    "Under the Skin": {
+                        "year": 2024,
+                        "shortDescription": "lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                        "duration": "1h 15m",
+                        "trailer": "./static/trailers/underTheSkin.mp4",
+                        "awards": [
+                            "Best Director",
+                            "Best Cinematography"
+                        ]
+                    }
+                },
+                "profile": {
+                    "name": "Jazmin Zhao",
+                    "bio": "Jazmin Zhao is a lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                    "image": "./static/jazmin-profile-pic.JPG"
+                }
+            };
+
+            const pageTitle = getPageTitle();
+            // Add nav bar
+            const navContainer = $('#nav-container');
+            const navBar = buildNavigation(data.films);
+            navContainer.append(navBar);
+
+            const film = data.films[pageTitle];
+            console.log(`film: ${film}`);
+            console.log(`page title: ${pageTitle}`);
+            const contentContainer = $('#content-container');
+            const trailer = buildTrailerViewer(film.trailer, film.title);
+            contentContainer.append(trailer);
+            
+            // const gallery = buildGallery(film.stills);
+            // const filmDetails = buildFilmDetails(film);
+
+
+        });
+    </script>
+</body>
+
+</html>

@@ -10,6 +10,7 @@ function buildHeroSection(reel, films) {
   return `
     <section class="hero">
       <div class="video-container">
+      <div class="hero-nav-container"></div>
         <iframe 
           id="hero-video-iframe"
           src="https://player.vimeo.com/video/${reel}?background=1&autoplay=1&loop=1&byline=0&title=0&portrait=0&muted=1"
@@ -30,13 +31,13 @@ function buildHeroSection(reel, films) {
       </div>
       <div class="film-titles">
         ${Object.keys(films).map(key => `
-        <h2 data-clip-file="${clipFileMap[key]}"><a href="#">${films[key].title}</a></h2>
+        <h2 data-clip-file="${clipFileMap[key]}"><a href="./${key}.html">${films[key].title}</a></h2>
         `).join('')}
       </div>
     </section>
   `;
 }
-/* <h2 data-clip-file="${clipFileMap[key]}"><a href="./${key}.html">${films[key].title}</a></h2> */
+
 class HybridVideoManager {
   constructor() {
     this.vimeoIframe = null;
@@ -342,9 +343,9 @@ function buildNavigation(films) {
         <nav class="navigation">
             <li><a href="./about.html">About</a></li>
             <li><a href="./credits.html">Credits</a></li>
-            <li><a href="./reel.html">Reel</a></li>
+            <li><a href="./reel.html" id="reel-button">Reel</a></li>
             <li class="dropdown">
-                <a href="/films">Films</a>
+                <a href="./films.html">Films</a>
                 <ul class="dropdown-menu">
                     ${Object.keys(films).map(url => `
                         <li><a href="./${url}.html">${films[url].title}</a></li>
@@ -406,4 +407,113 @@ function buildSocialLinks(links) {
             </ul>
         </section>
     `;
+}
+
+// Make sure you’ve included the Vimeo Player SDK first:
+// <script src="https://player.vimeo.com/api/player.js"></script>
+
+class HeroNav {
+  /**
+   * @param {HTMLElement} container  — the <div class="hero-nav-container"></div>
+   * @param {HTMLIFrameElement} iframeEl — your Vimeo iframe element
+   */
+  constructor(container, iframeEl) {
+    this.container = container;
+    this.player = new Vimeo.Player(iframeEl);
+    this._buildDOM();
+    this._cacheElements();
+    this._bindEvents();
+    this._syncInitialState();
+  }
+
+  // 1) Create & append the markup
+  _buildDOM() {
+    const nav = document.createElement('div');
+    nav.classList.add('hero-nav');
+    nav.innerHTML = `
+      <button class="hero-nav__play-pause">❚❚</button>
+      <div class="hero-nav__progress-bar">
+        <div class="hero-nav__progress"></div>
+      </div>
+      <input type="range"
+             class="hero-nav__volume"
+             min="0"
+             max="1"
+             step="0.01"
+             value="1">
+    `;
+    this.container.appendChild(nav);
+  }
+
+  // 2) Grab references for later
+  _cacheElements() {
+    const nav = this.container.querySelector('.hero-nav');
+    this.el = {
+      nav,
+      playPause: nav.querySelector('.hero-nav__play-pause'),
+      progressBar: nav.querySelector('.hero-nav__progress-bar'),
+      progress: nav.querySelector('.hero-nav__progress'),
+      volume: nav.querySelector('.hero-nav__volume'),
+    };
+  }
+
+  // 3) Hook up user interactions
+  _bindEvents() {
+    this.el.playPause.addEventListener('click', () => this._togglePlay());
+    this.el.progressBar.addEventListener('click', e => this._seek(e));
+    this.el.volume.addEventListener('input', e => this._setVolume(e));
+  }
+
+  // 4) Listen for time‐updates, paused‐state, etc.
+  _syncInitialState() {
+    // update progress bar as video plays
+    this.player.on('timeupdate', ({ seconds, duration }) => {
+      const pct = (seconds / duration) * 100;
+      this.el.progress.style.width = pct + '%';
+    });
+
+    // set initial volume slider
+    this.player.getVolume().then(v => {
+      this.el.volume.value = v;
+    });
+
+    // set correct play/pause icon
+    this.player.getPaused().then(paused => this._updatePlayPause(paused));
+  }
+
+  // Toggle play/pause & update icon
+  _togglePlay() {
+    this.player.getPaused().then(paused => {
+      if (paused) this.player.play();
+      else this.player.pause();
+      this._updatePlayPause(!paused);
+    });
+  }
+
+  _updatePlayPause(paused) {
+    this.el.playPause.textContent = paused ? '►' : '❚❚';
+  }
+
+  // Seek to clicked position
+  _seek(e) {
+    const { left, width } = this.el.progressBar.getBoundingClientRect();
+    const pct = (e.clientX - left) / width;
+    this.player.getDuration().then(dur => {
+      this.player.setCurrentTime(pct * dur);
+    });
+  }
+
+  // Adjust volume from slider
+  _setVolume(e) {
+    const v = parseFloat(e.target.value);
+    this.player.setVolume(v);
+  }
+
+  // Public API:
+  show() {
+    this.el.nav.classList.add('active');
+  }
+  hide() {
+    this.el.nav.classList.remove('active');
+  }
 }

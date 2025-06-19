@@ -159,8 +159,8 @@ class FilmDetails {
                         ${this.#buildCrew()}
                         ${this.#buildAwards()}
                     </div>
-                </div>
                 ${this.#buildGallery()}
+                </div>
                 ${this.#buildTrailer()}
             </article>
         `;

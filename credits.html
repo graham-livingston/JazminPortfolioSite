@@ -3,21 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jazmin Zhao</title>
-    <link rel="stylesheet" href="https://use.typekit.net/gve3tpm.css">
-    <link rel="stylesheet" href="stylesheet.css">
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
-    <script src="https://player.vimeo.com/api/player.js"></script>
+    <title>Filmography</title>
+    <script src="./script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./stylesheet.css">
+    <style>
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-weight: 500;
+    line-height: 1.5;
+    color: #1a1a1a;
+    width: 100vw;
+    margin: 0 auto;
+    padding: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+}
 
+h2{
+    font-size: 1.2rem;
+    font-weight: 500;
+    /* margin-bottom: 1rem; */
+    color: #333;
+}
+/* Hide scrollbar for WebKit browsers */
+body::-webkit-scrollbar {
+    display: none;
+}
+
+/* Header */
+.page-header {
+    margin-bottom: 1.5rem;
+}
+
+.page-title {
+    font-size: 2.25rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+}
+/* Film Credits Styles */
+.filmography-wrapper {
+    width: 100vw;
+    height: auto;
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: row;
+    margin-top: 5rem;
+    margin-left: 7rem;
+}
+
+.filmography {
+    margin-top: 2.5rem;
+    margin-left: 10rem;
+    margin-right: 15rem;
+}
+
+.filmography-section {
+    margin-bottom: 2.25rem;
+}
+
+/* Lists for film credits */
+.shorts-list,
+.docs-list,
+.series-list {
+    list-style: none;
+}
+
+/* Film items with left border like education */
+.doc-item,
+.series-item {
+    margin-bottom: 1rem;
+    /* border-left: 1px solid #e5e5e5; */
+    padding: 1.25rem;
+}
+.short-item{
+    margin: 0.5rem 0;
+    padding-left: 1.25rem;
+}
+
+/* Film title styling */
+.film-title,
+.series-title {
+    font-weight: 500;
+    font-size: 14px;
+    margin-bottom: 0.4rem;
+    color: #1a1a1a;
+}
+
+/* Make film titles italic for emphasis */
+.film-title::before,
+.series-title::before {
+    content: '';
+    font-style: italic;
+}
+
+/* Film role styling */
+.film-role {
+    color: #555;
+    font-size: 14px;
+    line-height: 1;
+}
+
+/* Episode roles for web series */
+.episode-roles {
+    list-style: none;
+    margin-top: 0.5rem;
+    padding-left: 0;
+}
+
+.episode-roles li {
+    margin-bottom: 0.3rem;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #555;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+/* Episode bullet styling */
+.episode-roles li:before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #ccc;
+    font-weight: 300;
+    font-size: 14px;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .bio-container {
+        flex-direction: column;
+        align-items: center;
+        margin-left: 2rem;
+        margin-right: 2rem;
+        gap: 2rem;
+    }
+
+    .education-item {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .education-right {
+        text-align: left;
+    }
+
+    .profile-image {
+        width: 180px;
+        height: 230px;
+    }
+
+    .page-title {
+        font-size: 1.75rem;
+    }
+
+    .resume,
+    .filmography {
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
+
+    .left-block {
+        display: none;
+    }
+}
+    </style>
 </head>
-<body class="index-page">
-    <div id="nav-container"></div>
-    <div id="hero-container"></div>
+<body>
+    <header class="page-header">
+        <nav id="nav-container"></nav>
+    </header>
+    <main>
+        <div class="filmography-wrapper">
+            <div class="left-block">
+                <div class="filmography-section">
+                    <h2 class="shorts-title">SHORTS</h2>
+                    <div id="shorts"></div>
+                </div>
+            </div>
+
+            <div class="right-block">
+                <div class="filmography-section">
+                    <h2 class="Featured-title">FEATURED DOCUMENTARIES</h2>
+                    <div id="docs"></div>
+                </div>
+
+                <div class="filmography-section">
+                    <h2 class="WebSeries-title">WEB SERIES</h2>
+                    <div id="webSeries"></div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
 
     <script>
         $(document).ready(function() {
+
             const data = {
                 "hero": {
                     "director_reel": "1092319647"
@@ -391,64 +587,68 @@
 
             };
 
+            class Credit {
+                constructor(data) {
+                    this.data = data;
+                }
+                buildShortHTML() {
+                    return this.data.filmography.shorts.map(short => `
+                        <li class="short-item">
+                            <div class="film-title">${short.title}, ${short.year}, ${short.location}</div>
+                            <div class="film-role">${short.role}</div>
+                        </li>
+                    `).join('');
+                }
+
+                buildFeaturedDocHTML() {
+                    return this.data.filmography["FEATURE DOCUMENTARIES"].map(doc => `
+                        <li class="doc-item">
+                            <div class="film-title">${doc.title}, ${doc.year}, ${doc.location}</div>
+                            <div class="film-role">${doc.role}</div>
+                        </li>
+                    `).join('');
+                }
+
+                buildWebSeriesHTML() {
+                    // Group web series entries by title
+                    const seriesGroups = {};
+                    this.data.filmography["WEB SERIES"].forEach(entry => {
+                        if (!seriesGroups[entry.title]) {
+                            seriesGroups[entry.title] = {
+                                title: entry.title,
+                                year: entry.year,
+                                location: entry.location,
+                                episodes: []
+                            };
+                        }
+                        seriesGroups[entry.title].episodes.push(entry.role);
+                    });
+
+                    return Object.values(seriesGroups).map(series => `
+                        <li class="series-item">
+                            <div class="series-title">${series.title}, ${series.year}, ${series.location}</div>
+                            <ul class="episode-roles">
+                                ${series.episodes.map(role => `<li>${role}</li>`).join('')}
+                            </ul>
+                        </li>
+                    `).join('');
+                }
+            };
+
             // Add nav bar
             const navContainer = $('#nav-container');
             const selectFilms = [data.films['conversation-among-the-ruins'], data.films['life-is-elsewhere'], data.films['under-the-skin'], data.films['scenes-from-life']];
             const navBar = buildNavigation(data.films);
             navContainer.append(navBar);
 
-            // Add hero section to hero container
-            const heroContainer = $('#hero-container');
-            
-            // Create films object with proper structure for buildHeroSection
-            const filmsForHero = {
-                'conversation-among-the-ruins': data.films['conversation-among-the-ruins'],
-                'life-is-elsewhere': data.films['life-is-elsewhere'],
-                'under-the-skin': data.films['under-the-skin'],
-                'scenes-from-life': data.films['scenes-from-life']
-            };
-            
-            const heroSection = buildHeroSection(data.hero.director_reel, filmsForHero);
-            heroContainer.append(heroSection);
-            
-            // Initialize hover functionality after hero section is added to DOM
-            initializeHeroHovers(data.hero.director_reel);
-
-            // after DOM + Vimeo SDK are ready…
-            const container = document.querySelector('.hero-nav-container');
-            const iframeEl  = document.getElementById('hero-video-iframe');
-            const heroNav    = new HeroNav(container, iframeEl);
-
-                // Intercept Reel link on index page
-            $('#reel-button').on('click', function(e) {
-                const path = window.location.pathname;
-                if (path === '/' || path.endsWith('/index.html')) {
-                    e.preventDefault();
-
-                    // Push new URL (no page reload)
-                    history.pushState({ view: 'reel' }, '', '/?reel');
-
-                    // Animate film titles down + fade out
-                    $('.film-titles').addClass('animating');
-
-                    heroNav.show();
-                }
-        });
-
-            // // Handle back/forward browser buttons
-            // window.addEventListener('popstate', function(event) {
-            //     if (event.state && event.state.view === 'reel') {
-            //         // Ensure animations/nav reflect reel state
-            //         $('.film-titles').addClass('animating');
-            //         const iframe = $('#hero-video-iframe');
-            //         iframe.attr('src', iframe.attr('src').replace('&background=1', ''));
-            //     } else {
-            //         // Revert to default hero
-            //         $('.film-titles').removeClass('animating');
-            //         const iframe = $('#hero-video-iframe');
-            //         iframe.attr('src', iframe.attr('src') + '&background=1');
-            //     }
-            // });
+            // Build filmography
+            const credit = new Credit(data);
+            const shortsHTML = credit.buildShortHTML();
+            const featuredDocsHTML = credit.buildFeaturedDocHTML();
+            const webSeriesHTML = credit.buildWebSeriesHTML();
+            $('#shorts').html(`<ul class="shorts-list">${shortsHTML}</ul>`);
+            $('#docs').html(`<ul class="docs-list">${featuredDocsHTML}</ul>`);
+            $('#webSeries').html(`<ul class="series-list">${webSeriesHTML}</ul>`);
         });
     </script>
 </body>
